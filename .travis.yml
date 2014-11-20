@@ -10,7 +10,7 @@ env:
   - PROJECT=ndn-traffic-generator
 install:
   - ./deps_ndn-cxx.sh
-  - ./deps_${PROJECT}.sh
+  - if [[ -f ./deps_${PROJECT}.sh ]]; then ./deps_${PROJECT}.sh; fi
 script:
   - ./build_ndn-cxx.sh
   - ./build_${PROJECT}.sh

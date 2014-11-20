@@ -1,0 +1,14 @@
+language: cpp
+os:
+  - linux
+compiler:
+  - gcc
+env:
+  - PROJECT=NFD
+  - PROJECT=NLSR
+install:
+  - ./deps_ndn-cxx.sh
+  - ./deps_${PROJECT}.sh
+script:
+  - ./build_ndn-cxx.sh
+  - ./build_${PROJECT}.sh

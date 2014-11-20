@@ -8,6 +8,7 @@ env:
   - PROJECT=NLSR
   # - PROJECT=ndn-tlv-ping
   - PROJECT=ndn-traffic-generator
+  - PROJECT=ndns
 install:
   - ./deps_ndn-cxx.sh
   - if [[ -f ./deps_${PROJECT}.sh ]]; then ./deps_${PROJECT}.sh; fi

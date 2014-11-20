@@ -3,7 +3,11 @@ set -e
 
 GERRIT_CHANGE=$(cat PATCHSET | cut -d, -f1)
 GERRIT_PATCHSET=$(cat PATCHSET | cut -d, -f2)
-GERRIT_BRANCH=refs/changes/$(python -c "print('%02d' % (${GERRIT_CHANGE} % 100))")/${GERRIT_CHANGE}/${GERRIT_PATCHSET}
+if [[ $GERRIT_CHANGE == 'master' ]]; then
+  GERRIT_BRANCH=master
+else
+  GERRIT_BRANCH=refs/changes/$(python -c "print('%02d' % (${GERRIT_CHANGE} % 100))")/${GERRIT_CHANGE}/${GERRIT_PATCHSET}
+fi
 
 mkdir -p repos/ndn-cxx
 cd repos/ndn-cxx

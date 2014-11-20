@@ -6,6 +6,7 @@ compiler:
 env:
   - PROJECT=NFD
   - PROJECT=NLSR
+  - PROJECT=ndn-tlv-ping
 install:
   - ./deps_ndn-cxx.sh
   - ./deps_${PROJECT}.sh

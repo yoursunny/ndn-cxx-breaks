@@ -14,4 +14,4 @@ echo Building ChronoSync
 ./waf -j4
 
 echo Running ChronoSync tests
-build/unit-tests -l test_suite
+LD_LIBRARY_PATH=build/ build/unit-tests -l test_suite

@@ -7,7 +7,7 @@ cd repos/NLSR
 echo Checking out from Gerrit: NLSR master
 git init
 git fetch --depth=1 http://gerrit.named-data.net/NLSR && git checkout FETCH_HEAD
-git submodule update --init --depth=1 || git submodule update --init
+git submodule update --init
 
 echo Building NLSR
 ./waf configure --with-tests --debug

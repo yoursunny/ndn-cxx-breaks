@@ -7,7 +7,7 @@ cd repos/NFD
 echo Checking out from Gerrit: NFD master
 git init
 git fetch --depth=1 http://gerrit.named-data.net/NFD && git checkout FETCH_HEAD
-git submodule update --init --depth=1 || git submodule update --init
+git submodule update --init
 
 echo Building NFD
 ./waf configure --with-tests --debug --without-pch

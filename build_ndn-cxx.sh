@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -e
 
+BOOST_LIBS=$(cat repos/boost-libs.option)
+
 GERRIT_CHANGE=$(cat PATCHSET | cut -d, -f1)
 GERRIT_PATCHSET=$(cat PATCHSET | cut -d, -f2)
 if [[ $GERRIT_CHANGE == 'master' ]]; then
@@ -17,6 +19,6 @@ git init
 git fetch --depth=1 http://gerrit.named-data.net/ndn-cxx $GERRIT_BRANCH && git checkout FETCH_HEAD
 
 echo Building ndn-cxx
-./waf configure
+./waf configure $BOOST_LIBS
 ./waf -j4
 sudo ./waf install

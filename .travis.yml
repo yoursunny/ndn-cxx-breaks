@@ -11,6 +11,7 @@ env:
   - PROJECT=ndns
   - PROJECT=repo-ng
   - PROJECT=ChronoSync
+  - PROJECT=ndnSIM WANT_BOOST_155=1
 install:
   - ./deps_ndn-cxx.sh
   - if [[ -f ./deps_${PROJECT}.sh ]]; then ./deps_${PROJECT}.sh; fi

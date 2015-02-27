@@ -4,14 +4,15 @@ os:
 compiler:
   - gcc
 env:
-  - PROJECT=NFD
   - PROJECT=ndnSIM WANT_BOOST_155=1
+  - PROJECT=NFD
   - PROJECT=NLSR
-  - PROJECT=ndn-tlv-ping
-  - PROJECT=ndn-traffic-generator
+  - PROJECT=ChronoChat
+  - PROJECT=ChronoSync
   - PROJECT=ndns
   - PROJECT=repo-ng
-  - PROJECT=ChronoSync
+  - PROJECT=ndn-tlv-ping
+  - PROJECT=ndn-traffic-generator
 install:
   - ./deps_ndn-cxx.sh
   - if [[ -f ./deps_${PROJECT}.sh ]]; then ./deps_${PROJECT}.sh; fi

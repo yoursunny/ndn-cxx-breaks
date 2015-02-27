@@ -4,7 +4,7 @@ set -e
 mkdir -p repos/ChronoSync
 cd repos/ChronoSync
 
-echo Checking out from Gerrit: NLSR master
+echo Checking out from Gerrit: ChronoSync master
 git init
 git fetch --depth=1 http://gerrit.named-data.net/ChronoSync && git checkout FETCH_HEAD
 git submodule update --init

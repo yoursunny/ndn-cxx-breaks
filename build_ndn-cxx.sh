@@ -19,6 +19,6 @@ git init
 git fetch --depth=1 http://gerrit.named-data.net/ndn-cxx $GERRIT_BRANCH && git checkout FETCH_HEAD
 
 echo Building ndn-cxx
-./waf configure $BOOST_LIBS
+./waf configure --debug --without-pch $BOOST_LIBS
 ./waf -j4
 sudo ./waf install

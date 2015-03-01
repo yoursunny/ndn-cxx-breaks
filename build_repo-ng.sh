@@ -10,7 +10,7 @@ git fetch --depth=1 http://gerrit.named-data.net/repo-ng && git checkout FETCH_H
 git submodule update --init
 
 echo Building repo-ng
-./waf configure --with-tests --with-examples --debug
+./waf configure --with-tests --with-examples --debug $BOOST_LIBS
 ./waf -j4
 
 echo Running repo-ng tests

@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -e
 
+BOOST_LIBS=$(cat repos/boost-libs.option)
+
 mkdir -p repos/ndn-traffic-generator
 cd repos/ndn-traffic-generator
 
@@ -10,5 +12,5 @@ git fetch --depth=1 http://gerrit.named-data.net/ndn-traffic-generator && git ch
 git submodule update --init
 
 echo Building ndn-traffic-generator
-./waf configure
+./waf configure $BOOST_LIBS
 ./waf -j4

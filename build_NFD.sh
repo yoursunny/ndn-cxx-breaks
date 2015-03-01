@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -e
 
+BOOST_LIBS=$(cat repos/boost-libs.option)
+
 mkdir -p repos/NFD
 cd repos/NFD
 
@@ -10,7 +12,7 @@ git fetch --depth=1 http://gerrit.named-data.net/NFD && git checkout FETCH_HEAD
 git submodule update --init
 
 echo Building NFD
-./waf configure --with-tests --debug --without-pch
+./waf configure --with-tests --debug --without-pch $BOOST_LIBS
 ./waf -j4
 
 echo Running NFD tests: core

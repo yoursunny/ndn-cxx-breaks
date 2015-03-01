@@ -13,7 +13,7 @@ git submodule update --init
 
 echo Building ndns
 ./waf configure --with-tests --debug $BOOST_LIBS
-./waf -j4
+./waf -j2
 
 echo Running ndns tests
 build/unit-tests -l test_suite

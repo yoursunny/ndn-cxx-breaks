@@ -11,7 +11,7 @@ git submodule update --init
 
 echo Building repo-ng
 ./waf configure --with-tests --with-examples --debug $BOOST_LIBS
-./waf -j4
+./waf -j2
 
 echo Running repo-ng tests
 build/unit-tests -l test_suite

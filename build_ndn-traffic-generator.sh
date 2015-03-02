@@ -13,4 +13,4 @@ git submodule update --init
 
 echo Building ndn-traffic-generator
 ./waf configure $BOOST_LIBS
-./waf -j2
+./waf -j4 || ./waf -j1

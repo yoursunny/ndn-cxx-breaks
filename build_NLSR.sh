@@ -13,7 +13,7 @@ git submodule update --init
 
 echo Building NLSR
 ./waf configure --with-tests --debug $BOOST_LIBS
-./waf -j2
+./waf -j4 || ./waf -j1
 
 echo Running NLSR tests: nlsr
 build/unit-tests-nlsr -l test_suite

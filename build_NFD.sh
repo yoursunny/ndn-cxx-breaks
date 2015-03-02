@@ -13,7 +13,7 @@ git submodule update --init
 
 echo Building NFD
 ./waf configure --with-tests --debug --without-pch $BOOST_LIBS
-./waf -j2
+./waf -j4 || ./waf -j1
 
 echo Running NFD tests: core
 build/unit-tests-core -l test_suite

@@ -12,7 +12,8 @@ git fetch --depth=1 http://gerrit.named-data.net/NFD && git checkout FETCH_HEAD
 git submodule update --init
 
 echo Building NFD
-./waf configure --with-tests --debug --without-pch $BOOST_LIBS
+# ./waf configure --with-tests --debug --without-pch $BOOST_LIBS
+./waf configure --with-tests --without-pch $BOOST_LIBS
 ./waf -j4 || ./waf -j1
 
 echo Running NFD tests: core

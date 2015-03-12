@@ -18,7 +18,12 @@ echo Checking out from Gerrit: ndn-cxx $GERRIT_BRANCH
 git init
 git fetch --depth=1 http://gerrit.named-data.net/ndn-cxx $GERRIT_BRANCH && git checkout FETCH_HEAD
 
+DEBUG_FLAG=--debug
+if [[ ${NDNCXX_DEBUG=1} -eq 0 ]]; then
+  DEBUG_FLAG=
+fi
+
 echo Building ndn-cxx
-./waf configure --debug --without-pch $BOOST_LIBS
+./waf configure $DEBUG_FLAG --without-pch $BOOST_LIBS
 ./waf -j4 || ./waf -j1
 sudo ./waf install

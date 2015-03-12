@@ -11,9 +11,16 @@ git init
 git fetch --depth=1 http://gerrit.named-data.net/NFD && git checkout FETCH_HEAD
 git submodule update --init
 
+# note: building both ndn-cxx and NFD in debug mode would exceed TravisCI memory limit,
+#       so we have to build both ndn-cxx(debug)+NFD(release) and ndn-cxx(release)+NFD(debug)
+#       in order to catch most problems.
+DEBUG_FLAG=--debug
+if [[ ${NFD_DEBUG=1} -eq 0 ]]; then
+  DEBUG_FLAG=
+fi
+
 echo Building NFD
-# ./waf configure --with-tests --debug --without-pch $BOOST_LIBS
-./waf configure --with-tests --without-pch $BOOST_LIBS
+./waf configure --with-tests $DEBUG_FLAG --without-pch $BOOST_LIBS
 ./waf -j4 || ./waf -j1
 
 echo Running NFD tests: core

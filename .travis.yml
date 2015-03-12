@@ -5,7 +5,8 @@ compiler:
   - gcc
 env:
   - PROJECT=ndnSIM WANT_BOOST_155=1
-  - PROJECT=NFD
+  - PROJECT=NFD NDNCXX_DEBUG=0
+  - PROJECT=NFD NFD_DEBUG=0
   - PROJECT=NLSR
   - PROJECT=ChronoChat
   - PROJECT=ChronoSync

@@ -19,10 +19,8 @@ sudo ./waf install
 cd ..
 
 echo Building ChronoChat
-# ./waf configure --with-tests --debug $BOOST_LIBS
-# unit tests are broken as of 20150226
-./waf configure --debug $BOOST_LIBS
+./waf configure --with-tests --debug $BOOST_LIBS
 ./waf -j4 || ./waf -j1
 
-# echo Running ChronoChat tests
-# build/unit-tests -l test_suite
+echo Running ChronoChat tests
+build/unit-tests -l test_suite

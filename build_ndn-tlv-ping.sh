@@ -12,5 +12,5 @@ git fetch --depth=1 http://gerrit.named-data.net/ndn-tlv-ping && git checkout FE
 git submodule update --init
 
 echo Building ndn-tlv-ping
-./waf configure $BOOST_LIBS
+./waf configure --debug $BOOST_LIBS
 ./waf -j4 || ./waf -j1

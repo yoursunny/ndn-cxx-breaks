@@ -22,8 +22,8 @@ git submodule update --init
 cd ../../
 
 echo Building ndnSIM
-./waf configure --disable-python --enable-tests --enable-examples $BOOST_LIBS
-./waf -j4 || ./waf -j1
+./waf configure --disable-python --enable-tests --enable-examples $BOOST_LIBS --enable-modules=ndnSIM
+./waf -j1
 
 echo Running ndnSIM tests: ndn-test
 NS_LOG=ndn.Consumer ./waf --run ndn-test

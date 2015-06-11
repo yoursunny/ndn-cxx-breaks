@@ -24,6 +24,7 @@ if [[ ${NDNCXX_DEBUG=1} -eq 0 ]]; then
 fi
 
 echo Building ndn-cxx
-./waf configure $DEBUG_FLAG --without-pch $BOOST_LIBS
+./waf configure $DEBUG_FLAG --without-pch --enable-shared --disable-static $BOOST_LIBS
 ./waf -j4 || ./waf -j1
 sudo ./waf install
+sudo ldconfig

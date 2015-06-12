@@ -12,6 +12,7 @@ env:
   - PROJECT=ChronoSync
   - PROJECT=ndns
   - PROJECT=repo-ng
+  - PROJECT=ndn-tools
   - PROJECT=ndn-tlv-ping
   - PROJECT=ndn-traffic-generator
 install:

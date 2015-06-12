@@ -13,7 +13,6 @@ env:
   - PROJECT=ndns
   - PROJECT=repo-ng
   - PROJECT=ndn-tools
-  - PROJECT=ndn-tlv-ping
   - PROJECT=ndn-traffic-generator
 install:
   - ./deps_ndn-cxx.sh

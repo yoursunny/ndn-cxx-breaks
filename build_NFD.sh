@@ -6,10 +6,7 @@ BOOST_LIBS=$(cat repos/boost-libs.option)
 mkdir -p repos/NFD
 cd repos/NFD
 
-echo Checking out from Gerrit: NFD master
-git init
-git fetch --depth=1 http://gerrit.named-data.net/NFD && git checkout FETCH_HEAD
-git submodule update --init
+../../checkout.sh NFD NFD
 
 # note: building both ndn-cxx and NFD in debug mode would exceed TravisCI memory limit,
 #       so we have to build both ndn-cxx(debug)+NFD(release) and ndn-cxx(release)+NFD(debug)

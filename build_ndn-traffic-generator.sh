@@ -6,10 +6,7 @@ BOOST_LIBS=$(cat repos/boost-libs.option)
 mkdir -p repos/ndn-traffic-generator
 cd repos/ndn-traffic-generator
 
-echo Checking out from Gerrit: ndn-traffic-generator master
-git init
-git fetch --depth=1 http://gerrit.named-data.net/ndn-traffic-generator && git checkout FETCH_HEAD
-git submodule update --init
+../../checkout.sh TRAFFICGEN ndn-traffic-generator
 
 echo Building ndn-traffic-generator
 ./waf configure $BOOST_LIBS

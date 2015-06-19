@@ -4,16 +4,19 @@ os:
 compiler:
   - gcc
 env:
-  - PROJECT=ndnSIM WANT_BOOST_155=1
-  - PROJECT=NFD NDNCXX_DEBUG=0
-  - PROJECT=NFD NFD_DEBUG=0
-  - PROJECT=NLSR
-  - PROJECT=ChronoChat
-  - PROJECT=ChronoSync
-  - PROJECT=ndns
-  - PROJECT=repo-ng
-  - PROJECT=ndn-tools
-  - PROJECT=ndn-traffic-generator
+  global:
+    - PATCHSET_NDNCXX=master
+  matrix:
+    - PROJECT=ndnSIM WANT_BOOST_155=1
+    - PROJECT=NFD NDNCXX_DEBUG=0
+    - PROJECT=NFD NFD_DEBUG=0
+    - PROJECT=NLSR
+    - PROJECT=ChronoChat
+    - PROJECT=ChronoSync
+    - PROJECT=ndns
+    - PROJECT=repo-ng
+    - PROJECT=ndn-tools
+    - PROJECT=ndn-traffic-generator
 install:
   - ./deps_ndn-cxx.sh
   - if [[ -f ./deps_${PROJECT}.sh ]]; then ./deps_${PROJECT}.sh; fi

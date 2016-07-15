@@ -1,14 +1,13 @@
-language: cpp
-os:
-  - linux
+language: generic
+sudo: required
+dist: trusty
 compiler:
   - gcc
 env:
   global:
     - PATCHSET_NDNCXX=master
   matrix:
-    - PROJECT=NFD NDNCXX_DEBUG=0
-    - PROJECT=NFD NFD_DEBUG=0
+    - PROJECT=NFD
     - PROJECT=NLSR
     - PROJECT=ChronoChat
     - PROJECT=ChronoSync

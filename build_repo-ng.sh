@@ -7,7 +7,7 @@ cd repos/repo-ng
 ../../checkout.sh REPONG repo-ng
 
 echo Building repo-ng
-./waf configure --with-tests --with-examples --debug $BOOST_LIBS
+./waf configure --with-tests --with-examples --debug
 ./waf -j4 || ./waf -j1
 
 echo Running repo-ng tests

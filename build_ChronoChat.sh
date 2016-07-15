@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 set -e
 
-BOOST_LIBS=$(cat repos/boost-libs.option)
-
 rm -rf repos/ChronoChat
 cd repos/
 
@@ -13,13 +11,13 @@ cd ChronoChat
 
 echo Building ChronoSync
 cd ChronoSync
-./waf configure $BOOST_LIBS
+./waf configure
 ./waf -j4 || ./waf -j1
 sudo ./waf install
 cd ..
 
 echo Building ChronoChat
-./waf configure --with-tests --debug $BOOST_LIBS
+./waf configure --with-tests --debug
 ./waf -j4 || ./waf -j1
 
 echo Running ChronoChat tests

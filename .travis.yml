@@ -8,6 +8,7 @@ env:
     - PATCHSET_NDNCXX=master
   matrix:
     - PROJECT=NFD
+    - PROJECT=ndn-cxx-integ
     - PROJECT=NLSR
     - PROJECT=ChronoChat
     - PROJECT=ChronoSync

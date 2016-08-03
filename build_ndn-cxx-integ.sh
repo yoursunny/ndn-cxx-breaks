@@ -19,7 +19,5 @@ nfd-start &>/dev/null
 
 cd repos/ndn-cxx/build
 
-for F in $(find tests/integrated/ -type f -executable); do
-  echo Running ndn-cxx $F
-  $F -l test_suite
-done
+echo Running face integ
+tests/integrated/face -l test_suite

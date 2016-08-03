@@ -1,0 +1,69 @@
+# NFD integration tests
+#
+# B[1]---|
+#        +---[1]A[2]---[1]R[2]---[1]D
+# C[1]---|
+
+set IP4_A1 "10.0.0.2"
+set IP4_B1 "10.0.0.1"
+set IP4_C1 "10.0.0.3"
+set IP4_A2 "10.1.0.1"
+set IP4_R1 "10.1.0.2"
+set IP4_R2 "10.2.0.1"
+set IP4_D1 "10.2.0.2"
+
+set ns [new Simulator]
+source tb_compat.tcl
+
+tb-make-soft-vtype hwRouter {pc3000 d710}
+tb-make-soft-vtype hwNdn {d710 pc3000}
+
+set R [$ns node]
+tb-set-hardware $R hwRouter
+tb-set-node-os $R UBUNTU14-64-STD
+tb-set-node-startcmd $R "/proj/NDN-Routing/integ/jobs/JOB/startcmd-r.sh"
+
+set A [$ns node]
+tb-set-hardware $A hwNdn
+tb-set-node-os $A UBUNTU14-64-STD
+tb-set-node-startcmd $A "/proj/NDN-Routing/integ/jobs/JOB/startcmd.sh"
+
+set B [$ns node]
+tb-set-hardware $B hwNdn
+tb-set-node-os $B UBUNTU14-64-STD
+tb-set-node-startcmd $B "/proj/NDN-Routing/integ/jobs/JOB/startcmd.sh"
+
+set C [$ns node]
+tb-set-hardware $C hwNdn
+tb-set-node-os $C UBUNTU14-64-STD
+tb-set-node-startcmd $C "/proj/NDN-Routing/integ/jobs/JOB/startcmd.sh"
+
+set D [$ns node]
+tb-set-hardware $D hwNdn
+tb-set-node-os $D UBUNTU14-64-STD
+tb-set-node-startcmd $D "/proj/NDN-Routing/integ/jobs/JOB/startcmd.sh"
+
+set lanABC [$ns make-lan "$A $B $C" 100Mb 0ms]
+set lanRA [$ns make-lan "$R $A" 100Mb 0ms]
+set lanRD [$ns make-lan "$R $D" 100Mb 0ms]
+
+tb-set-netmask $lanABC "255.255.255.0"
+tb-set-netmask $lanRA "255.255.255.0"
+tb-set-netmask $lanRD "255.255.255.0"
+
+tb-set-ip-lan $A $lanABC $IP4_A1
+tb-set-ip-lan $B $lanABC $IP4_B1
+tb-set-ip-lan $C $lanABC $IP4_C1
+tb-set-ip-lan $A $lanRA $IP4_A2
+tb-set-ip-lan $R $lanRA $IP4_R1
+tb-set-ip-lan $R $lanRD $IP4_R2
+tb-set-ip-lan $D $lanRD $IP4_D1
+
+$ns rtproto Manual
+$A add-route $lanRD $R
+$D add-route $lanRA $R
+
+tb-set-sync-server $A
+
+$ns run
+

@@ -22,16 +22,19 @@ fi
 
 cd $DIR
 source job.conf
+mkdir -p $LOGDIR
 
 function run_exp {
 
 /usr/testbed/bin/sslxmlrpc_client.py startexp proj=NDN-Routing exp=$EXP nsfilepath=$DIR/integ.ns batch=$BATCH description=NFD-integration-tests-$JOB idleswap=60 max_duration=240 wait=true
 sleep 5
-while [[ $(/usr/testbed/bin/sslxmlrpc_client.py statewait proj=NDN-Routing exp=$EXP state=swapped timeout=600) != swapped ]]; do true; done
+for WAIT in $(seq 24); do
+  sleep 60
+  if [[ $(/usr/testbed/bin/sslxmlrpc_client.py statewait proj=NDN-Routing exp=$EXP state=swapped timeout=600) == swapped ]]; then break; fi
+done
 sleep 5
 /usr/testbed/bin/sslxmlrpc_client.py endexp proj=NDN-Routing exp=$EXP wait=true
 sleep 5
-mkdir -p $LOGDIR
 cd $LOGDIR
 cp $DIR/job.conf ./
 tar czf ../$JOB.tgz *
@@ -44,4 +47,4 @@ fi
 
 }
 
-run_exp &>/dev/null &
+run_exp &>$LOGDIR/runexp.log &

@@ -10,13 +10,15 @@ cd repos/ndn-cxx
 
 ../../checkout.sh NDNCXX ndn-cxx
 
-EXTRA=
+EXTRA='--debug'
 if [[ $PROJECT == ndn-cxx-integ ]]; then
-  EXTRA='--with-tests --with-examples'
+  EXTRA='--debug --with-tests --with-examples'
+elif [[ $PROJECT == NFD-benchmark ]]; then
+  EXTRA=''
 fi
 
 echo Building ndn-cxx
-./waf configure --debug --without-pch $EXTRA
+./waf configure --without-pch $EXTRA
 ./waf -j4 || ./waf -j1
 sudo ./waf install
 sudo ldconfig

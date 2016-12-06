@@ -23,6 +23,9 @@ fi
 if [[ $PATCHSET_NDNTOOLS != 'master' ]]; then
   sudo -u integ /home/integ/change-commit.sh ndn-tools $PATCHSET_NDNTOOLS /home/integ/integration-tests/install_helpers/install_ndntools.py
 fi
+if [[ $PATCHSET_TRAFFICGEN != 'master' ]]; then
+  sudo -u integ /home/integ/change-commit.sh ndn-traffic-generator $PATCHSET_TRAFFICGEN /home/integ/integration-tests/install_helpers/install_ndntraffic.py
+fi
 
 HOME=/home/integ sudo -u integ /home/integ/install.sh
 

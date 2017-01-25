@@ -17,6 +17,8 @@ echo Starting NFD
 sudo cp /usr/local/etc/ndn/nfd.conf.sample /usr/local/etc/ndn/nfd.conf
 nfd-start &>/dev/null
 
+sleep 15
+
 cd repos/ndn-cxx/build
 
 echo Running face integ

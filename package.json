@@ -6,7 +6,7 @@
   "version": "0.0.1",
   "repository": "",
   "scripts": {
-    "start": "brunch watch -snP 8000",
+    "start": "concurrently --kill-others \"brunch watch\" \"php -S 0.0.0.0:8000 -t public\"",
     "build": "brunch build --production"
   },
   "dependencies": {
@@ -20,6 +20,7 @@
     "babel-preset-react": "~6.22",
     "brunch": "^2",
     "clean-css-brunch": "^2",
+    "concurrently": "^3.4.0",
     "uglify-js-brunch": "^2"
   }
 }

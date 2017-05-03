@@ -1,0 +1,73 @@
+[
+  {
+    "name": "ndn-cxx",
+    "patchset_varname": "PATCHSET_NDNCXX"
+  },
+  {
+    "name": "NFD",
+    "depends": [
+      "ndn-cxx"
+    ],
+    "patchset_varname": "PATCHSET_NFD"
+  },
+  {
+    "name": "NLSR",
+    "depends": [
+      "ndn-cxx"
+    ],
+    "patchset_varname": "PATCHSET_NLSR"
+  },
+  {
+    "name": "ndn-tools",
+    "depends": [
+      "ndn-cxx"
+    ],
+    "patchset_varname": "PATCHSET_NDNTOOLS"
+  },
+  {
+    "name": "ndns",
+    "depends": [
+      "ndn-cxx"
+    ],
+    "patchset_varname": "PATCHSET_NDNS"
+  },
+  {
+    "name": "repo-ng",
+    "depends": [
+      "ndn-cxx"
+    ],
+    "patchset_varname": "PATCHSET_REPONG"
+  },
+  {
+    "name": "ChronoSync",
+    "depends": [
+      "ndn-cxx"
+    ],
+    "patchset_varname": "PATCHSET_CHRONOSYNC"
+  },
+  {
+    "name": "ChronoChat",
+    "note": "with submodule ChronoSync",
+    "depends": [
+      "ndn-cxx"
+    ],
+    "master_only": true
+  },
+  {
+    "name": "ndn-traffic-generator",
+    "depends": [
+      "ndn-cxx"
+    ],
+    "patchset_varname": "PATCHSET_TRAFFICGEN"
+  },
+  {
+    "name": "integration-tests",
+    "depends": [
+      "ndn-cxx",
+      "NFD",
+      "ndn-tools"
+    ],
+    "patchset_varname": "PATCHSET_INTEG",
+    "gerrit_name": "NFD\/integration-tests"
+  }
+]

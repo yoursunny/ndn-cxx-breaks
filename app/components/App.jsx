@@ -4,36 +4,33 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      projects: [
-        {
-          name: 'ndn-cxx'
-        },
-        {
-          name: 'NFD'
-        },
-        {
-          name: 'ndn-tools'
-        }
-      ]
+      projects: []
     };
+
+    fetch('projects.json').then(resp => resp.json())
+    .then(j => this.setState({projects: j}));
   }
 
   render() {
-    const projectRows = this.state.projects.map(proj =>
-      <ProjectRow key={proj.name} name={proj.name}/>
-    );
-
-    return (
-      <table>
-        <thead>
-          <tr><th>project</th><th>patchset</th></tr>
-        </thead>
-        <tbody>
-          {projectRows}
-        </tbody>
-      </table>
-    );
+    return <ProjectsTable projects={this.state.projects}/>
   }
+}
+
+function ProjectsTable(props) {
+  const projectRows = props.projects.map(proj =>
+    <ProjectRow key={proj.name} name={proj.name}/>
+  );
+
+  return (
+    <table>
+      <thead>
+        <tr><th>project</th><th>patchset</th></tr>
+      </thead>
+      <tbody>
+        {projectRows}
+      </tbody>
+    </table>
+  );
 }
 
 function ProjectRow(props) {

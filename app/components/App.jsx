@@ -3,6 +3,8 @@ import React from 'react';
 export default class App extends React.Component {
   constructor(props) {
     super(props);
+    this.updateSetting = this.updateSetting.bind(this);
+
     this.state = {
       projects: []
     };
@@ -11,14 +13,23 @@ export default class App extends React.Component {
     .then(j => this.setState({projects: j}));
   }
 
+  updateSetting(project, evt) {
+    this.setState({ ['setting_' + project.name ]: evt.target.value });
+  }
+
   render() {
-    return <ProjectsTable projects={this.state.projects}/>
+    return (
+      <ProjectsTable
+        projects={this.state.projects}
+        updateSetting={this.updateSetting}
+      />
+    );
   }
 }
 
 function ProjectsTable(props) {
   const projectRows = props.projects.map(proj =>
-    <ProjectRow key={proj.name} name={proj.name}/>
+    <ProjectRow key={proj.name} project={proj} setting={props['setting_' + proj.name]} onChange={props.updateSetting}/>
   );
 
   return (
@@ -34,10 +45,12 @@ function ProjectsTable(props) {
 }
 
 function ProjectRow(props) {
+  const onChange = props.onChange.bind(null, props.project);
+
   return (
     <tr>
-      <td>{props.name}</td>
-      <td><input type="text" value={props.value} onChange={props.onChange}/></td>
+      <td>{props.project.name}</td>
+      <td><input type="text" value={props.setting} onChange={onChange}/></td>
     </tr>
   );
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import ProjectsTable from './ProjectsTable';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -25,32 +26,4 @@ export default class App extends React.Component {
       />
     );
   }
-}
-
-function ProjectsTable(props) {
-  const projectRows = props.projects.map(proj =>
-    <ProjectRow key={proj.name} project={proj} setting={props['setting_' + proj.name]} onChange={props.updateSetting}/>
-  );
-
-  return (
-    <table>
-      <thead>
-        <tr><th>project</th><th>patchset</th></tr>
-      </thead>
-      <tbody>
-        {projectRows}
-      </tbody>
-    </table>
-  );
-}
-
-function ProjectRow(props) {
-  const onChange = props.onChange.bind(null, props.project);
-
-  return (
-    <tr>
-      <td>{props.project.name}</td>
-      <td><input type="text" value={props.setting} onChange={onChange}/></td>
-    </tr>
-  );
 }

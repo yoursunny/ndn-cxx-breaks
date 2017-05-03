@@ -18,7 +18,7 @@ export default class App extends React.Component {
     fetch('projects.json').then(resp => resp.json())
     .then(function(projects) {
       var settings = {};
-      projects.forEach(p => settings[p.name] = '');
+      projects.forEach(p => settings[p.name] = 'master');
       self.setState({
         projects: projects,
         settings: settings
@@ -26,10 +26,9 @@ export default class App extends React.Component {
     });
   }
 
-  updateSetting(project, evt) {
-    var newSetting = evt.target.value;
+  updateSetting(project, setting) {
     this.setState(prevState => ({
-      settings: Object.assign(prevState.settings, {[project.name]: newSetting})
+      settings: Object.assign(prevState.settings, {[project.name]: setting})
     }));
   }
 

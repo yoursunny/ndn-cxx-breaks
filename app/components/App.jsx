@@ -7,21 +7,37 @@ export default class App extends React.Component {
     this.updateSetting = this.updateSetting.bind(this);
 
     this.state = {
-      projects: []
+      projects: [],
+      settings: {}
     };
+  }
+
+  componentWillMount() {
+    var self = this;
 
     fetch('projects.json').then(resp => resp.json())
-    .then(j => this.setState({projects: j}));
+    .then(function(projects) {
+      var settings = {};
+      projects.forEach(p => settings[p.name] = '');
+      self.setState({
+        projects: projects,
+        settings: settings
+      });
+    });
   }
 
   updateSetting(project, evt) {
-    this.setState({ ['setting_' + project.name ]: evt.target.value });
+    var newSetting = evt.target.value;
+    this.setState(prevState => ({
+      settings: Object.assign(prevState.settings, {[project.name]: newSetting})
+    }));
   }
 
   render() {
     return (
       <ProjectsTable
         projects={this.state.projects}
+        settings={this.state.settings}
         updateSetting={this.updateSetting}
       />
     );

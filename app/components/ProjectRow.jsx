@@ -37,7 +37,7 @@ export default class ProjectRow extends React.Component {
         <td>{this.props.project.name}</td>
         <td><input type="checkbox" checked={this.props.patchset != 'none'} onChange={this.onBuildChange}/></td>
         <td><input type="checkbox" checked={this.props.patchset == 'master'} onChange={this.onMasterChange}/></td>
-        <td><input type="text" value={this.props.patchset} onChange={this.onTextChange}/></td>
+        <td><input type={this.props.project.master_only ? 'hidden' : 'text'} value={this.props.patchset} onChange={this.onTextChange}/></td>
         <td><CommitInfo patchset={this.props.patchset}/></td>
       </tr>
     );

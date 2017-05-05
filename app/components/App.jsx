@@ -27,7 +27,7 @@ export default class App extends React.Component {
 
   updatePatchset(project, patchset) {
     this.setState(prevState => ({
-      patchsets: Object.assign(prevState.patchsets, {[project.name]: setting})
+      patchsets: Object.assign(prevState.patchsets, {[project.name]: patchset})
     }));
   }
 

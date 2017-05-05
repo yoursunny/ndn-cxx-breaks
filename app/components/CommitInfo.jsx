@@ -43,6 +43,6 @@ export default class CommitInfo extends React.Component {
 
 function CommitInfoDisplay(props) {
   return (
-    <p>{JSON.stringify(props.info)}</p>
+    <span>{JSON.stringify(props.info)}</span>
   );
 }

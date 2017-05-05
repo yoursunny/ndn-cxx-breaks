@@ -1,5 +1,5 @@
 import React from 'react';
-import ProjectsTable from './ProjectsTable';
+import ProjectsList from './ProjectsList';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -46,13 +46,13 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <ProjectsTable
+      <form className="container" onSubmit={this.handleSubmit}>
+        <ProjectsList
           projects={this.state.projects}
           patchsets={this.state.patchsets}
           updatePatchset={this.updatePatchset}
         />
-        <input type="submit" value="OK"/>
+        <input type="submit" className="primary" value="OK"/>
       </form>
     );
   }

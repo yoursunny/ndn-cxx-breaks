@@ -24,3 +24,7 @@ node_modules/
 
 # Brunch output folder.
 public/
+
+# ndn-cxx-breaks specific
+sshkey
+sshkey.pub

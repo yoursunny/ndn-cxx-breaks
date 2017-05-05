@@ -4,7 +4,7 @@ import CommitInfo from './CommitInfo';
 export default class ProjectRow extends React.Component {
   constructor(props) {
     super(props)
-    this.changeSetting = props.onChange.bind(null, props.project);
+    this.updatePatchset = props.updatePatchset.bind(null, props.project);
 
     this.onBuildChange = this.onBuildChange.bind(this);
     this.onMasterChange = this.onMasterChange.bind(this);
@@ -17,18 +17,18 @@ export default class ProjectRow extends React.Component {
 
   onBuildChange(evt) {
     if (!evt.target.checked) {
-      this.changeSetting('none');
+      this.updatePatchset('none');
     }
   }
 
   onMasterChange(evt) {
     if (evt.target.checked) {
-      this.changeSetting('master');
+      this.updatePatchset('master');
     }
   }
 
   onTextChange(evt) {
-    this.changeSetting(evt.target.value);
+    this.updatePatchset(evt.target.value);
   }
 
   render() {

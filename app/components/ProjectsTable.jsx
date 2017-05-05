@@ -3,7 +3,7 @@ import ProjectRow from './ProjectRow';
 
 export default function ProjectsTable(props) {
   const projectRows = props.projects.map(proj =>
-    <ProjectRow key={proj.name} project={proj} patchset={props.settings[proj.name]} onChange={props.updateSetting}/>
+    <ProjectRow key={proj.name} project={proj} patchset={props.patchsets[proj.name]} updatePatchset={props.updatePatchset}/>
   );
 
   return (

@@ -4,7 +4,8 @@ import ProjectsTable from './ProjectsTable';
 export default class App extends React.Component {
   constructor(props) {
     super(props);
-    this.updateSetting = this.updateSetting.bind(this);
+    this.updatePatchset = this.updatePatchset.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
 
     this.state = {
       projects: [],
@@ -13,32 +14,46 @@ export default class App extends React.Component {
   }
 
   componentWillMount() {
-    var self = this;
-
     fetch('projects.json').then(resp => resp.json())
-    .then(function(projects) {
-      var settings = {};
-      projects.forEach(p => settings[p.name] = 'master');
-      self.setState({
+    .then(projects => {
+      var patchsets = {};
+      projects.forEach(p => patchsets[p.name] = 'master');
+      this.setState({
         projects: projects,
-        settings: settings
+        patchsets: patchsets
       });
     });
   }
 
-  updateSetting(project, setting) {
+  updatePatchset(project, patchset) {
     this.setState(prevState => ({
-      settings: Object.assign(prevState.settings, {[project.name]: setting})
+      patchsets: Object.assign(prevState.patchsets, {[project.name]: setting})
     }));
+  }
+
+  handleSubmit(evt) {
+    evt.preventDefault();
+    fetch('submit-job.php', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        patchsets: this.state.patchsets
+      })
+    })
+    .then(resp => resp.json())
+    .then(resp => console.log(resp));
   }
 
   render() {
     return (
-      <ProjectsTable
-        projects={this.state.projects}
-        settings={this.state.settings}
-        updateSetting={this.updateSetting}
-      />
+      <form onSubmit={this.handleSubmit}>
+        <ProjectsTable
+          projects={this.state.projects}
+          patchsets={this.state.patchsets}
+          updatePatchset={this.updatePatchset}
+        />
+        <input type="submit" value="OK"/>
+      </form>
     );
   }
 }

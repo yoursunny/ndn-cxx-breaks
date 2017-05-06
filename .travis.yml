@@ -9,7 +9,6 @@ env:
     - PATCHSET_NDNCXX=master
   matrix:
     - PROJECT=NFD
-    - PROJECT=NFD-benchmark
     - PROJECT=ndn-cxx-integ
     - PROJECT=NLSR
     - PROJECT=ChronoChat

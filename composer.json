@@ -2,6 +2,7 @@
     "require": {
         "kzykhys/git": "^0.1.2",
         "mustangostang/spyc": "^0.6.2",
-        "symfony/options-resolver": "2.6"
+        "symfony/options-resolver": "2.6",
+        "perchten/rmrdir": "^1.0"
     }
 }

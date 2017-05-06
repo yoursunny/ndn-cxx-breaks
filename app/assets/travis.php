@@ -27,7 +27,7 @@ foreach ($projects as $proj) {
 $y['env']['global'] = $globals;
 $y['env']['matrix'] = $matrix;
 
-$travis_conf['notifications'] = array(
+$y['notifications'] = array(
   'email'=>array(
     'recipients'=>array(
       $email
@@ -41,5 +41,9 @@ file_put_contents($repo.'/.travis.yml', Spyc::YAMLDump($y));
 
 $git->add('.travis.yml');
 $git->commit('job '.$job);
-$git->push('origin', $job);
+
+if (!$dryrun) {
+  $git->push('origin', $job);
+  rmrdir($repo);
+}
 ?>

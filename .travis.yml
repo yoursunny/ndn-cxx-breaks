@@ -1,3 +1,4 @@
+---
 language: generic
 sudo: required
 dist: trusty
@@ -19,8 +20,8 @@ env:
     - PROJECT=ndn-traffic-generator
 install:
   - ./deps_ndn-cxx.sh
-  - if [[ -f ./deps_${PROJECT}.sh ]]; then ./deps_${PROJECT}.sh; fi
+  - 'if [[ -f ./deps_${PROJECT}.sh ]]; then ./deps_${PROJECT}.sh; fi'
 before_script:
   - ./build_ndn-cxx.sh
 script:
-  - ./build_${PROJECT}.sh
+  - './build_${PROJECT}.sh'

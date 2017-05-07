@@ -42,7 +42,14 @@ export default class CommitInfo extends React.Component {
 }
 
 function CommitInfoDisplay(props) {
+  if (!props.info) {
+    return <span/>;
+  }
   return (
-    <span>{JSON.stringify(props.info)}</span>
+    <div className="commit-info">
+      <author>{props.info.author}</author>
+      {' '}
+      <span>{props.info.subject}</span>
+    </div>
   );
 }

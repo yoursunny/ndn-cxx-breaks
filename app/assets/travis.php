@@ -20,7 +20,7 @@ foreach ($projects as $proj) {
   if (isset($proj['patchset_varname']) && $patchsets[$name] != 'master' && $patchsets[$name] != 'none') {
     $globals[] = $proj['patchset_varname'].'='.$patchsets[$name];
   }
-  if ($patchsets[$name] != 'none') {
+  if ($patchsets[$name] != 'none' && ($proj['matrix_skip']??false) !== true) {
     $matrix[] = 'PROJECT='.$name;
   }
 }

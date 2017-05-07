@@ -1,7 +1,8 @@
 [
   {
     "name": "ndn-cxx",
-    "patchset_varname": "PATCHSET_NDNCXX"
+    "patchset_varname": "PATCHSET_NDNCXX",
+    "matrix_skip": true
   },
   {
     "name": "NFD",

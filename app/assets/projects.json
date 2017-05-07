@@ -67,15 +67,5 @@
       "ndn-cxx"
     ],
     "patchset_varname": "PATCHSET_TRAFFICGEN"
-  },
-  {
-    "name": "integration-tests",
-    "depends": [
-      "ndn-cxx",
-      "NFD",
-      "ndn-tools"
-    ],
-    "patchset_varname": "PATCHSET_INTEG",
-    "gerrit_name": "NFD\/integration-tests"
   }
 ]

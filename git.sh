@@ -1,4 +1,6 @@
 #!/bin/bash
+DIR=$(dirname "${BASH_SOURCE[0]}")
+
 VERB=$1
 shift
 
@@ -6,7 +8,7 @@ SSH_AGENT_PID=0
 
 if [[ $VERB = 'clone' ]] || [[ $VERB = 'push' ]]; then
   eval $(ssh-agent -s)
-  ssh-add ../sshkey
+  ssh-add $DIR/sshkey
 fi
 
 if [[ $VERB = 'clone' ]]; then

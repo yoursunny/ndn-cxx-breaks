@@ -12,7 +12,8 @@ export default class App extends React.Component {
       projects: [],
       isInProgress: false,
       patchsets: {},
-      email: ''
+      email: '',
+      job: null
     };
   }
 
@@ -40,7 +41,7 @@ export default class App extends React.Component {
 
   handleSubmit(evt) {
     evt.preventDefault();
-    this.setState({isInProgress: true});
+    this.setState({isInProgress: true, job: null});
     fetch('submit-job.php', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
@@ -51,8 +52,7 @@ export default class App extends React.Component {
     })
     .then(resp => resp.json())
     .then(resp => {
-      this.setState({isInProgress: false});
-      console.log(resp);
+      this.setState({isInProgress: false, job: resp.job});
     });
   }
 
@@ -66,8 +66,10 @@ export default class App extends React.Component {
           updatePatchset={this.updatePatchset}
         />
         <p>Send result to
-          <input type="email" placeholder="someone@example.com" value={this.state.email} onChange={this.updateEmail}/>,
+          <input type="email" required placeholder="someone@example.com" value={this.state.email} onChange={this.updateEmail}/>,
           <input type="submit" className="primary" value="please" disabled={this.state.isInProgress}/>
+          <span className={this.state.isInProgress ? 'spinner-donut' : ''}></span>
+          <span hidden={!this.state.job}>OK, job {this.state.job}</span>
         </p>
       </form>
     );

@@ -58,9 +58,9 @@ export default class ProjectSetting extends React.Component {
         <div className="col-sm-12 col-md-3" hidden={this.props.project.master_only}>
           <div className="input-group">
             <input type="radio" id={'r_' + this.props.project.name + '_patchset'} name={'r_' + this.props.project.name} checked={this.isSpecificPatchset()} onChange={this.activatePatchset}/>
-            <label htmlFor={'r_' + this.props.project.name + '_patchset'}>{this.isSpecificPatchset() ? '' : 'specific patchset:'}</label>
+            <label htmlFor={'r_' + this.props.project.name + '_patchset'}>{this.isSpecificPatchset() ? '' : 'specific patchset'}</label>
           </div>
-          <input type="text" value={this.props.patchset} className="proj-patchset" hidden={!this.isSpecificPatchset()} onChange={this.onPatchsetChange} ref={(input) => { this.patchsetInput = input; }}/>
+          <input type="text" value={this.props.patchset} placeholder="8888,11" className="proj-patchset" hidden={!this.isSpecificPatchset()} onChange={this.onPatchsetChange} ref={(input) => { this.patchsetInput = input; }}/>
         </div>
         <div className="col-sm-12 col-md-9 col-md-offset-3" hidden={!this.isSpecificPatchset()}>
           <CommitInfo patchset={this.props.patchset}/>

@@ -1,6 +1,18 @@
 #!/usr/bin/env bash
 set -e
 
+mkdir -p repos/ChronoSync
+cd repos/ChronoSync
+
+../../checkout.sh CHRONOSYNC ChronoSync
+
+echo Building ChronoSync
+./waf configure --debug
+./waf -j4 || ./waf -j1
+sudo ./waf install
+
+cd ../..
+
 mkdir -p repos/NLSR
 cd repos/NLSR
 

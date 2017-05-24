@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
 set -e
 
-sudo apt-get install -qq liblog4cxx10-dev protobuf-compiler libprotobuf-dev
+./deps_ChronoSync.sh
+
+sudo apt-get install -qq liblog4cxx10-dev

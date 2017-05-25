@@ -25,6 +25,3 @@ echo Building NLSR
 
 echo Running NLSR tests: nlsr
 build/unit-tests-nlsr -l test_suite
-
-echo Running NLSR tests: nsync
-build/unit-tests-nsync -l test_suite

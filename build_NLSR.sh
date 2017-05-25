@@ -10,6 +10,7 @@ echo Building ChronoSync
 ./waf configure --debug
 ./waf -j4 || ./waf -j1
 sudo ./waf install
+sudo ldconfig
 
 cd ../..
 

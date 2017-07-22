@@ -17,6 +17,8 @@ env:
     - PROJECT=repo-ng
     - PROJECT=ndn-tools
     - PROJECT=ndn-traffic-generator
+before_install:
+  - export PATH=$(echo $PATH | tr ':' "\n" | sed '/\/opt\/python/d' | tr "\n" ":" | sed "s|::|:|g")
 install:
   - ./deps_ndn-cxx.sh
   - 'if [[ -f ./deps_${PROJECT}.sh ]]; then ./deps_${PROJECT}.sh; fi'

@@ -7,9 +7,7 @@ env:
     - PATCHSET_NDNCXX=master
   matrix:
     - PROJECT=NFD
-    - PROJECT=ndn-cxx-integ
     - PROJECT=NLSR
-    - PROJECT=ChronoChat
     - PROJECT=ChronoSync
     - PROJECT=ndns
     - PROJECT=repo-ng
@@ -17,6 +15,8 @@ env:
     - PROJECT=ndn-traffic-generator
 before_install:
   - export PATH=$(echo $PATH | tr ':' "\n" | sed '/\/opt\/python/d' | tr "\n" ":" | sed "s|::|:|g")
-script:
+install:
   - ./make-Dockerfile.sh
-  - docker build .
+  - docker build -t ndn-cxx-breaks:$TRAVIS_BUILD_ID .
+script:
+  - docker run ndn-cxx-breaks:$TRAVIS_BUILD_ID bash -c "source patchset.env; ./build_$PROJECT.sh"

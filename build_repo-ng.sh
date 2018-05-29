@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 set -e
 
-mkdir -p repos/repo-ng
-cd repos/repo-ng
+mkdir -p repo-ng
+cd repo-ng
 
-../../checkout.sh REPONG repo-ng
+../checkout.sh REPONG repo-ng
 
 echo Building repo-ng
 ./waf configure --with-tests --with-examples --debug

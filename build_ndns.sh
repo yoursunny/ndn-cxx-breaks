@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 set -e
 
-mkdir -p repos/ndns
-cd repos/ndns
+mkdir -p ndns
+cd ndns
 
-../../checkout.sh NDNS ndns
+../checkout.sh NDNS ndns
 
 echo Building ndns
 ./waf configure --with-tests --debug

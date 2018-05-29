@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 set -e
 
-mkdir -p repos/NFD
-cd repos/NFD
+mkdir -p NFD
+cd NFD
 
-../../checkout.sh NFD NFD
+../checkout.sh NFD NFD
 
 echo Building NFD
 ./waf configure --with-tests --debug --without-pch

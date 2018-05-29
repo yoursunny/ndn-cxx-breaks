@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-rm -rf repos/ChronoChat
-cd repos/
+rm -rf ChronoChat
 
 echo Cloning from GitHub: ChronoChat master
 git clone --depth=1 --recursive git://github.com/named-data/ChronoChat
@@ -13,7 +12,7 @@ echo Building ChronoSync
 cd ChronoSync
 ./waf configure
 ./waf -j4 || ./waf -j1
-sudo ./waf install
+./waf install
 cd ..
 
 echo Building ChronoChat

@@ -2,7 +2,7 @@
 set -e
 PROJVAR=$1
 PROJ=$2
-REPO=${3:-http://gerrit.named-data.net/$PROJ}
+REPO=${3:-https://gerrit.named-data.net/$PROJ}
 
 PATCHSETVAR=PATCHSET_${PROJVAR}
 PATCHSET=${!PATCHSETVAR:-master}

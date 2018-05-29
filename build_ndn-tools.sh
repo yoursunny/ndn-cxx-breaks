@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 set -e
 
-mkdir -p repos/ndn-tools
-cd repos/ndn-tools
+mkdir -p ndn-tools
+cd ndn-tools
 
-../../checkout.sh NDNTOOLS ndn-tools
+../checkout.sh NDNTOOLS ndn-tools
 
 echo Building ndn-tools
 ./waf configure --debug --with-tests

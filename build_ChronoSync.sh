@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 set -e
 
-mkdir -p repos/ChronoSync
-cd repos/ChronoSync
+mkdir -p ChronoSync
+cd ChronoSync
 
-../../checkout.sh CHRONOSYNC ChronoSync
+../checkout.sh CHRONOSYNC ChronoSync
 
 echo Building ChronoSync
 ./waf configure --with-tests --debug

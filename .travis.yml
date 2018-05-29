@@ -1,9 +1,7 @@
 ---
-language: generic
 sudo: required
-dist: xenial
-compiler:
-  - gcc
+services:
+  - docker
 env:
   global:
     - PATCHSET_NDNCXX=master
@@ -19,10 +17,6 @@ env:
     - PROJECT=ndn-traffic-generator
 before_install:
   - export PATH=$(echo $PATH | tr ':' "\n" | sed '/\/opt\/python/d' | tr "\n" ":" | sed "s|::|:|g")
-install:
-  - ./deps_ndn-cxx.sh
-  - 'if [[ -f ./deps_${PROJECT}.sh ]]; then ./deps_${PROJECT}.sh; fi'
-before_script:
-  - ./build_ndn-cxx.sh
 script:
-  - './build_${PROJECT}.sh'
+  - ./make-Dockerfile.sh
+  - docker build .

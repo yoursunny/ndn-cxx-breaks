@@ -1,23 +1,23 @@
 #!/usr/bin/env bash
 set -e
 
-mkdir -p repos/ChronoSync
-cd repos/ChronoSync
+mkdir -p ChronoSync
+cd ChronoSync
 
-../../checkout.sh CHRONOSYNC ChronoSync
+../checkout.sh CHRONOSYNC ChronoSync
 
 echo Building ChronoSync
 ./waf configure --debug
 ./waf -j4 || ./waf -j1
-sudo ./waf install
-sudo ldconfig
+./waf install
+ldconfig
 
-cd ../..
+cd ..
 
-mkdir -p repos/NLSR
-cd repos/NLSR
+mkdir -p NLSR
+cd NLSR
 
-../../checkout.sh NLSR NLSR
+../checkout.sh NLSR NLSR
 
 echo Building NLSR
 ./waf configure --with-tests --debug

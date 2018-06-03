@@ -5,6 +5,13 @@
     "matrix_skip": true
   },
   {
+    "name": "ChronoSync",
+    "depends": [
+      "ndn-cxx"
+    ],
+    "patchset_varname": "PATCHSET_CHRONOSYNC"
+  },
+  {
     "name": "NFD",
     "depends": [
       "ndn-cxx"
@@ -12,17 +19,9 @@
     "patchset_varname": "PATCHSET_NFD"
   },
   {
-    "name": "ndn-cxx-integ",
-    "depends": [
-      "ndn-cxx",
-      "NFD"
-    ],
-    "master_only": true
-  },
-  {
     "name": "NLSR",
     "depends": [
-      "ndn-cxx"
+      "ChronoSync"
     ],
     "patchset_varname": "PATCHSET_NLSR"
   },
@@ -46,21 +45,6 @@
       "ndn-cxx"
     ],
     "patchset_varname": "PATCHSET_REPONG"
-  },
-  {
-    "name": "ChronoSync",
-    "depends": [
-      "ndn-cxx"
-    ],
-    "patchset_varname": "PATCHSET_CHRONOSYNC"
-  },
-  {
-    "name": "ChronoChat",
-    "note": "with submodule ChronoSync",
-    "depends": [
-      "ndn-cxx"
-    ],
-    "master_only": true
   },
   {
     "name": "ndn-traffic-generator",

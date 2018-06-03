@@ -16,3 +16,5 @@ echo Building ndn-cxx
 ./waf -j4 || ./waf -j1
 ./waf install
 ldconfig
+
+ndnsec-keygen /operator | ndnsec-install-cert -

@@ -7,7 +7,7 @@ cd NFD
 ../checkout.sh NFD NFD
 
 echo Building NFD
-./waf configure --with-tests --debug --without-pch
+./waf configure --debug --with-tests --without-pch
 ./waf -j4 || ./waf -j1
 
 echo Running NFD tests: core

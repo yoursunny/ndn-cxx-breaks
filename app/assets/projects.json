@@ -5,13 +5,6 @@
     "matrix_skip": true
   },
   {
-    "name": "ChronoSync",
-    "depends": [
-      "ndn-cxx"
-    ],
-    "patchset_varname": "PATCHSET_CHRONOSYNC"
-  },
-  {
     "name": "NFD",
     "depends": [
       "ndn-cxx"
@@ -19,9 +12,24 @@
     "patchset_varname": "PATCHSET_NFD"
   },
   {
+    "name": "ChronoSync",
+    "depends": [
+      "ndn-cxx"
+    ],
+    "patchset_varname": "PATCHSET_CHRONOSYNC"
+  },
+  {
+    "name": "PSync",
+    "depends": [
+      "ndn-cxx"
+    ],
+    "patchset_varname": "PATCHSET_PSYNC"
+  },
+  {
     "name": "NLSR",
     "depends": [
-      "ChronoSync"
+      "ChronoSync",
+      "PSync"
     ],
     "patchset_varname": "PATCHSET_NLSR"
   },
@@ -31,6 +39,13 @@
       "ndn-cxx"
     ],
     "patchset_varname": "PATCHSET_NDNTOOLS"
+  },
+  {
+    "name": "ndncert",
+    "depends": [
+      "ndn-cxx"
+    ],
+    "patchset_varname": "PATCHSET_NDNCERT"
   },
   {
     "name": "ndns",

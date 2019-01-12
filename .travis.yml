@@ -10,6 +10,7 @@ env:
     - PROJECT=ChronoSync
     - PROJECT=PSync
     - PROJECT=NLSR
+    - PROJECT=ndncert
     - PROJECT=ndns
     - PROJECT=ndn-tools
     - PROJECT=ndn-traffic-generator

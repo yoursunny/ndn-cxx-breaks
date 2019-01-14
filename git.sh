@@ -8,6 +8,7 @@ SSH_AGENT_PID=0
 
 if [[ $VERB = 'clone' ]] || [[ $VERB = 'push' ]]; then
   eval $(ssh-agent -s)
+  chmod 0600 $DIR/sshkey
   ssh-add $DIR/sshkey
 fi
 

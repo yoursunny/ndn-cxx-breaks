@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 set -e
 
-mkdir -p ChronoSync
-cd ChronoSync
+mkdir -p PSync
+cd PSync
 
-../checkout.sh CHRONOSYNC ChronoSync
+../checkout.sh PSYNC PSync
 
-echo Building ChronoSync
+echo Building PSync
 ./waf configure --with-tests --debug
 ./waf -j4 || ./waf -j1
 
-echo Running ChronoSync tests
+echo Running PSync tests
 LD_LIBRARY_PATH=build build/unit-tests -l test_suite

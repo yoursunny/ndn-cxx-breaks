@@ -10,8 +10,8 @@
     "build": "brunch build --production"
   },
   "dependencies": {
-    "react": "^15.4",
-    "react-dom": "^15.4"
+    "react": "^16.7",
+    "react-dom": "^16.7"
   },
   "devDependencies": {
     "babel-brunch": "~6.0",

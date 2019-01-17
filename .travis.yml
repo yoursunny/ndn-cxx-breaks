@@ -16,7 +16,7 @@ env:
     - PROJECT=ndn-traffic-generator
     - PROJECT=repo-ng
 before_install:
-  - export PATH=$(echo $PATH | tr ':' '\n' | sed '/\/opt\/python/d' | tr '\n' ':' | sed 's|::|:|g')
+  - export PATH=$(echo $PATH | tr ":" "\n" | sed "/\/opt\/python/d" | tr "\n" ":" | sed "s|::|:|g")
 install:
   - ./make-Dockerfile.sh
   - docker build -t ndn-cxx-breaks:$TRAVIS_BUILD_ID .

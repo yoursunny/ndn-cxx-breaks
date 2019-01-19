@@ -4,7 +4,7 @@ set -e
 mkdir -p ndncert
 cd ndncert
 
-../checkout.sh NDNCERT ndncert
+../checkout.sh ndncert
 
 echo Building ndncert
 ./waf configure --with-tests --debug

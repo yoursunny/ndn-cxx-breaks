@@ -4,7 +4,7 @@ set -e
 mkdir -p ChronoSync
 cd ChronoSync
 
-../checkout.sh CHRONOSYNC ChronoSync
+../checkout.sh ChronoSync
 
 echo Building ChronoSync
 ./waf configure --debug
@@ -17,7 +17,7 @@ cd ..
 mkdir -p PSync
 cd PSync
 
-../checkout.sh PSYNC PSync
+../checkout.sh PSync
 
 echo Building PSync
 ./waf configure --debug
@@ -30,7 +30,7 @@ cd ..
 mkdir -p NLSR
 cd NLSR
 
-../checkout.sh NLSR NLSR
+../checkout.sh NLSR
 
 echo Building NLSR
 ./waf configure --with-tests --debug

@@ -4,7 +4,7 @@ set -e
 mkdir -p ndn-cxx
 cd ndn-cxx
 
-../checkout.sh NDNCXX ndn-cxx
+../checkout.sh ndn-cxx
 
 EXTRA=
 if [[ $PROJECT == ndn-cxx-integ ]]; then

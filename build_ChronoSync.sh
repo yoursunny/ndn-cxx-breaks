@@ -4,7 +4,7 @@ set -e
 mkdir -p ChronoSync
 cd ChronoSync
 
-../checkout.sh CHRONOSYNC ChronoSync
+../checkout.sh ChronoSync
 
 echo Building ChronoSync
 ./waf configure --with-tests --debug

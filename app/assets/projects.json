@@ -55,17 +55,24 @@
     "patchset_varname": "PATCHSET_NDNS"
   },
   {
+    "name": "ndn-traffic-generator",
+    "depends": [
+      "ndn-cxx"
+    ],
+    "patchset_varname": "PATCHSET_NTG"
+  },
+  {
+    "name": "name-based-access-control",
+    "depends": [
+      "ndn-cxx"
+    ],
+    "patchset_varname": "PATCHSET_NAC"
+  },
+  {
     "name": "repo-ng",
     "depends": [
       "ndn-cxx"
     ],
     "patchset_varname": "PATCHSET_REPONG"
-  },
-  {
-    "name": "ndn-traffic-generator",
-    "depends": [
-      "ndn-cxx"
-    ],
-    "patchset_varname": "PATCHSET_TRAFFICGEN"
   }
 ]

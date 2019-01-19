@@ -10,6 +10,7 @@ env:
     - PROJECT=ChronoSync
     - PROJECT=PSync
     - PROJECT=NLSR
+    - PROJECT=name-based-access-control
     - PROJECT=ndncert
     - PROJECT=ndns
     - PROJECT=ndn-tools

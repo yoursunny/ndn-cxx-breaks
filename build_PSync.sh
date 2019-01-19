@@ -4,7 +4,7 @@ set -e
 mkdir -p PSync
 cd PSync
 
-../checkout.sh PSYNC PSync
+../checkout.sh PSync
 
 echo Building PSync
 ./waf configure --with-tests --debug

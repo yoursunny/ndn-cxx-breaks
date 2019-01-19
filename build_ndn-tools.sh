@@ -4,7 +4,7 @@ set -e
 mkdir -p ndn-tools
 cd ndn-tools
 
-../checkout.sh NDNTOOLS ndn-tools
+../checkout.sh ndn-tools
 
 echo Building ndn-tools
 ./waf configure --debug --with-tests

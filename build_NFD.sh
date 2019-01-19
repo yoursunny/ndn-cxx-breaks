@@ -4,7 +4,7 @@ set -e
 mkdir -p NFD
 cd NFD
 
-../checkout.sh NFD NFD
+../checkout.sh NFD
 
 echo Building NFD
 ./waf configure --debug --with-tests --without-pch

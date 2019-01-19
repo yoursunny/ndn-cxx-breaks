@@ -4,7 +4,7 @@ set -e
 mkdir -p ndns
 cd ndns
 
-../checkout.sh NDNS ndns
+../checkout.sh ndns
 
 echo Building ndns
 ./waf configure --with-tests --debug

@@ -4,7 +4,7 @@ set -e
 mkdir -p repo-ng
 cd repo-ng
 
-../checkout.sh REPONG repo-ng
+../checkout.sh repo-ng
 
 echo Building repo-ng
 ./waf configure --with-tests --with-examples --debug

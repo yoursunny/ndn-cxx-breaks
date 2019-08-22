@@ -1,7 +1,5 @@
-dist: xenial
+dist: bionic
 language: cpp
-services:
-  - docker
 env:
   global:
     - PATCHSET_NDNCXX=master
@@ -17,9 +15,12 @@ env:
     - PROJECT=ndn-traffic-generator
     - PROJECT=repo-ng
 before_install:
-  - export PATH=$(echo $PATH | tr ":" "\n" | sed "/\/opt\/python/d" | tr "\n" ":" | sed "s|::|:|g")
+  - sudo sh -c 'echo 0 > /proc/sys/net/ipv6/conf/all/disable_ipv6'
 install:
-  - ./make-Dockerfile.sh
-  - docker build -t ndn-cxx-breaks:$TRAVIS_BUILD_ID .
+  - DEPS=$(sort -u ndn-cxx.deps $PROJECT.deps)
+  - sudo apt-get update -qq
+  - sudo apt-get install -qy $DEPS
+before_script:
+  - ./build_ndn-cxx.sh
 script:
-  - docker run ndn-cxx-breaks:$TRAVIS_BUILD_ID bash -c "source patchset.env && ./build_${PROJECT}.sh"
+  - ./build_${PROJECT}.sh

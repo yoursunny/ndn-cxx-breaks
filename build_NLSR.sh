@@ -1,31 +1,8 @@
 #!/usr/bin/env bash
 set -e
 
-mkdir -p ChronoSync
-cd ChronoSync
-
-../checkout.sh ChronoSync
-
-echo Building ChronoSync
-./waf configure --debug
-./waf -j4 || ./waf -j1
-./waf install
-ldconfig
-
-cd ..
-
-mkdir -p PSync
-cd PSync
-
-../checkout.sh PSync
-
-echo Building PSync
-./waf configure --debug
-./waf -j4 || ./waf -j1
-./waf install
-ldconfig
-
-cd ..
+DEP_CHRONOSYNC=1 ./build_ChronoSync.sh
+DEP_PSYNC=1 ./build_PSync.sh
 
 mkdir -p NLSR
 cd NLSR

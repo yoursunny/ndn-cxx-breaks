@@ -2,6 +2,8 @@ dist: bionic
 language: cpp
 env:
   global:
+    - BOOST_TEST_COLOR_OUTPUT=yes
+    - BOOST_TEST_LOG_LEVEL=test_suite
     - PATCHSET_NDNCXX=master
   matrix:
     - PROJECT=NFD
@@ -14,13 +16,12 @@ env:
     - PROJECT=ndn-tools
     - PROJECT=ndn-traffic-generator
     - PROJECT=repo-ng
-before_install:
-  - sudo sh -c 'echo 0 > /proc/sys/net/ipv6/conf/all/disable_ipv6'
 install:
-  - DEPS=$(sort -u ndn-cxx.deps $PROJECT.deps)
+  - DEPS=$(sort -u ndn-cxx.deps ${PROJECT}.deps)
   - sudo apt-get update -qq
-  - sudo apt-get install -qy $DEPS
+  - sudo apt-get install -qy ${DEPS}
 before_script:
+  - sudo sysctl -e -w net.ipv6.conf.all.disable_ipv6=0
   - ./build_ndn-cxx.sh
 script:
   - ./build_${PROJECT}.sh

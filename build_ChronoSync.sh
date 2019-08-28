@@ -7,10 +7,10 @@ cd ChronoSync
 ../checkout.sh ChronoSync
 
 echo Building ChronoSync
-./waf configure --with-tests --debug
+./waf configure --debug $([[ -z $1 ]] && echo --with-tests)
 ./waf -j4 || ./waf -j1
 
-if [[ -n DEP_CHRONOSYNC ]]; then
+if [[ $1 == install ]]; then
   sudo ./waf install
   sudo ldconfig
   exit 0

@@ -11,13 +11,13 @@ echo Building NFD
 ./waf -j4 || ./waf -j1
 
 echo Running NFD tests: core
-build/unit-tests-core -l test_suite
+build/unit-tests-core
 
 echo Running NFD tests: daemon
-build/unit-tests-daemon -l test_suite
+build/unit-tests-daemon
 
 echo Running NFD tests: rib
-build/unit-tests-rib -l test_suite
+build/unit-tests-rib
 
 echo Running NFD tests: tools
-build/unit-tests-tools -l test_suite
+build/unit-tests-tools

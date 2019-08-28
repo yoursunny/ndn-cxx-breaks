@@ -17,4 +17,4 @@ if [[ -n DEP_PSYNC ]]; then
 fi
 
 echo Running PSync tests
-LD_LIBRARY_PATH=build build/unit-tests -l test_suite
+LD_LIBRARY_PATH=build build/unit-tests

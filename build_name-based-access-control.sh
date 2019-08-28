@@ -11,4 +11,4 @@ echo Building name-based-access-control
 ./waf -j4 || ./waf -j1
 
 echo Running name-based-access-control tests
-LD_LIBRARY_PATH=build build/unit-tests -l test_suite
+LD_LIBRARY_PATH=build build/unit-tests

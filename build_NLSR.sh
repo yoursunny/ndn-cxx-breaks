@@ -14,4 +14,4 @@ echo Building NLSR
 ./waf -j4 || ./waf -j1
 
 echo Running NLSR tests
-build/unit-tests-nlsr -l test_suite
+build/unit-tests-nlsr

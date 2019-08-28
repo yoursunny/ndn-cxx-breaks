@@ -11,4 +11,4 @@ echo Building ndns
 ./waf -j4 || ./waf -j1
 
 echo Running ndns tests
-build/unit-tests -l test_suite
+build/unit-tests

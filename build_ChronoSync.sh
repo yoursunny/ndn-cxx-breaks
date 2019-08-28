@@ -17,4 +17,4 @@ if [[ -n DEP_CHRONOSYNC ]]; then
 fi
 
 echo Running ChronoSync tests
-LD_LIBRARY_PATH=build build/unit-tests -l test_suite
+LD_LIBRARY_PATH=build build/unit-tests

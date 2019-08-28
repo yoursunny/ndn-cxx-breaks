@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -e
 
-DEP_CHRONOSYNC=1 ./build_ChronoSync.sh
-DEP_PSYNC=1 ./build_PSync.sh
+./build_ChronoSync.sh install
+./build_PSync.sh install
 
 mkdir -p NLSR
 cd NLSR

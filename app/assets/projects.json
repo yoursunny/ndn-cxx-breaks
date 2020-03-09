@@ -2,7 +2,7 @@
   {
     "name": "ndn-cxx",
     "patchset_varname": "PATCHSET_NDNCXX",
-    "matrix_skip": true
+    "skip_job": true
   },
   {
     "name": "NFD",

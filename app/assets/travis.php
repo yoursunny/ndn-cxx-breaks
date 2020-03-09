@@ -13,29 +13,27 @@ $git->checkout->create($job);
 
 $y = Spyc::YAMLLoad($repo.'/.travis.yml');
 
-$globals = array();
-$matrix = array();
+$globals = [];
+$exclude = [];
 foreach ($projects as $proj) {
   $name = $proj['name'];
   if (isset($proj['patchset_varname']) && $patchsets[$name] != 'master' && $patchsets[$name] != 'none') {
     $globals[] = $proj['patchset_varname'].'='.$patchsets[$name];
   }
-  if ($patchsets[$name] != 'none' && ($proj['matrix_skip']??false) !== true) {
-    $matrix[] = 'PROJECT='.$name;
+  if ($patchsets[$name] == 'none' || @$proj['skip_job'] === true) {
+    $exclude[] = ['env' => 'PROJECT='.$name];
   }
 }
 $y['env']['global'] = $globals;
-$y['env']['matrix'] = $matrix;
+$y['jobs']['exclude'] = $exclude;
 
-$y['notifications'] = array(
-  'email'=>array(
-    'recipients'=>array(
-      $email
-    ),
-    'on_success'=>'always',
-    'on_failure'=>'always'
-  )
-);
+$y['notifications'] = [
+  'email' => [
+    'recipients' => [$email],
+    'on_success' => 'always',
+    'on_failure' => 'always',
+  ]
+];
 
 file_put_contents($repo.'/.travis.yml', Spyc::YAMLDump($y));
 

@@ -2,44 +2,34 @@ import React from 'react';
 import CommitInfo from './CommitInfo';
 
 export default class ProjectSetting extends React.Component {
-  constructor(props) {
-    super(props)
-    this.onMasterChange = this.onMasterChange.bind(this);
-    this.onSkipChange = this.onSkipChange.bind(this);
-    this.activatePatchset = this.activatePatchset.bind(this);
-    this.onPatchsetChange = this.onPatchsetChange.bind(this);
-
-    this.updatePatchset = props.updatePatchset.bind(null, props.project);
-  }
-
-  onMasterChange(evt) {
+  onMasterChange = (evt) => {
     if (evt.target.checked) {
-      this.updatePatchset('master');
+      this.props.updatePatchset(this.props.project, 'master');
     }
   }
 
-  onSkipChange(evt) {
+  onSkipChange = (evt) => {
     if (evt.target.checked) {
-      this.updatePatchset('none');
+      this.props.updatePatchset(this.props.project, 'none');
     }
   }
 
-  isSpecificPatchset() {
+  isSpecificPatchset = () => {
     return this.props.patchset != 'none' && this.props.patchset != 'master';
   }
 
-  activatePatchset(evt) {
+  activatePatchset = (evt) => {
     if (evt.target.checked) {
-      this.updatePatchset('');
+      this.props.updatePatchset(this.props.project, '');
       setTimeout(this.patchsetInput.focus.bind(this.patchsetInput), 0);
     }
   }
 
-  onPatchsetChange(evt) {
-    this.updatePatchset(evt.target.value);
+  onPatchsetChange = (evt) => {
+    this.props.updatePatchset(this.props.project, evt.target.value);
   }
 
-  render() {
+  render = () => {
     return (
       <div className="row proj-setting">
         <div className="col-sm-12 col-md-3 proj-name">{this.props.project.name}</div>

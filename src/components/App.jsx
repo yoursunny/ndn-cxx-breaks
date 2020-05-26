@@ -4,10 +4,6 @@ import ProjectsList from './ProjectsList';
 export default class App extends React.Component {
   constructor(props) {
     super(props);
-    this.updatePatchset = this.updatePatchset.bind(this);
-    this.updateEmail = this.updateEmail.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-
     this.state = {
       projects: [],
       isInProgress: false,
@@ -17,46 +13,41 @@ export default class App extends React.Component {
     };
   }
 
-  componentWillMount() {
-    fetch('projects.json').then(resp => resp.json())
-    .then(projects => {
-      var patchsets = {};
-      projects.forEach(p => patchsets[p.name] = 'master');
-      this.setState({
-        projects: projects,
-        patchsets: patchsets
-      });
+  componentDidMount = async () => {
+    var patchsets = {};
+    const projects = await fetch('projects.json').then(resp => resp.json());
+    projects.forEach(p => patchsets[p.name] = 'master');
+    this.setState({
+      projects: projects,
+      patchsets: patchsets
     });
   }
 
-  updatePatchset(project, patchset) {
+  updatePatchset = (project, patchset) => {
     this.setState(prevState => ({
       patchsets: Object.assign(prevState.patchsets, {[project.name]: patchset})
     }));
   }
 
-  updateEmail(evt) {
+  updateEmail = (evt) => {
     this.setState({email: evt.target.value});
   }
 
-  handleSubmit(evt) {
+  handleSubmit = async (evt) => {
     evt.preventDefault();
     this.setState({isInProgress: true, job: null});
-    fetch('submit-job.php', {
+    const resp = await fetch('submit-job.php', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
         patchsets: this.state.patchsets,
         email: this.state.email
       })
-    })
-    .then(resp => resp.json())
-    .then(resp => {
-      this.setState({isInProgress: false, job: resp.job});
-    });
+    }).then(resp => resp.json());
+    this.setState({isInProgress: false, job: resp.job});
   }
 
-  render() {
+  render = () => {
     return (
       <form className="container" onSubmit={this.handleSubmit}>
         <p>Please build projects using these revisions:</p>

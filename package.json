@@ -1,25 +1,46 @@
 {
-  "name": "brunch-app",
-  "description": "Brunch.io application",
   "private": true,
-  "author": "Brunch",
-  "version": "0.0.1",
-  "repository": "",
   "scripts": {
-    "start": "concurrently --kill-others \"brunch watch\" \"php -S 0.0.0.0:8000 -t public\"",
-    "build": "brunch build --production"
+    "build": "parcel build src/index.html",
+    "serve": "php -S 0.0.0.0:8000 -t dist",
+    "start": "concurrently --kill-others \"parcel watch src/index.html\" \"php -S 0.0.0.0:8000 -t dist\"",
+    "watch": "parcel watch src/index.html"
   },
   "dependencies": {
-    "react": "^16.7",
-    "react-dom": "^16.7"
+    "@babel/runtime": "^7.9.6",
+    "concurrently": "^5.2.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
   },
   "devDependencies": {
-    "babel-brunch": "~6.0",
-    "babel-preset-latest": "^6",
-    "babel-preset-react": "~6.22",
-    "brunch": "^2",
-    "clean-css-brunch": "^2",
-    "concurrently": "^3.4.0",
-    "uglify-js-brunch": "^2"
+    "@babel/core": "^7.9.6",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/plugin-transform-runtime": "^7.9.6",
+    "@babel/preset-react": "^7.9.4",
+    "parcel-bundler": "^1.12.4",
+    "parcel-plugin-static-files-copy": "^2.3.1"
+  },
+  "babel": {
+    "plugins": [
+      "@babel/plugin-proposal-class-properties",
+      "@babel/plugin-transform-runtime"
+    ],
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "target": [
+            "last 1 Chrome version",
+            "last 1 ChromeAndroid version",
+            "last 1 Firefox version",
+            "last 1 iOS version"
+          ]
+        }
+      ],
+      "@babel/preset-react"
+    ]
+  },
+  "staticFiles": {
+    "staticPath": "static"
   }
 }

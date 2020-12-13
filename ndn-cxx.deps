@@ -1,5 +1,3 @@
-git
 libboost-all-dev
 libssl-dev
 libsqlite3-dev
-pkg-config

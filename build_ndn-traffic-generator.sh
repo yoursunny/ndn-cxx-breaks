@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-set -e
+set -eo pipefail
 
 mkdir -p ndn-traffic-generator
 cd ndn-traffic-generator
 
-../checkout.sh ndn-traffic-generator NTG
+../checkout.sh ndn-traffic-generator
 
 echo Building ndn-traffic-generator
 ./waf configure
-./waf -j4 || ./waf -j1
+./waf -j$(nproc) || ./waf -j1

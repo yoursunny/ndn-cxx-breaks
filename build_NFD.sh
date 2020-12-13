@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -e
+set -eo pipefail
 
 mkdir -p NFD
 cd NFD
@@ -8,7 +8,7 @@ cd NFD
 
 echo Building NFD
 ./waf configure --debug --with-tests --without-pch
-./waf -j4 || ./waf -j1
+./waf -j$(nproc) || ./waf -j1
 
 echo Running NFD tests: core
 build/unit-tests-core

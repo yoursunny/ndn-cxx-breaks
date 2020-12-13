@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -e
+set -eo pipefail
 
 mkdir -p ndn-tools
 cd ndn-tools
@@ -8,7 +8,7 @@ cd ndn-tools
 
 echo Building ndn-tools
 ./waf configure --debug --with-tests
-./waf -j4 || ./waf -j1
+./waf -j$(nproc) || ./waf -j1
 
 echo Running ndn-tools tests
 build/unit-tests

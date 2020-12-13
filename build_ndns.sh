@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -e
+set -eo pipefail
 
 mkdir -p ndns
 cd ndns
@@ -8,7 +8,7 @@ cd ndns
 
 echo Building ndns
 ./waf configure --with-tests --debug
-./waf -j4 || ./waf -j1
+./waf -j$(nproc) || ./waf -j1
 
 echo Running ndns tests
 build/unit-tests

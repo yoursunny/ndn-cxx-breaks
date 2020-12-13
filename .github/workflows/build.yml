@@ -1,0 +1,89 @@
+name: build
+on:
+  workflow_dispatch:
+    inputs:
+      email:
+        description: email address for completion notice
+        required: true
+      patchsets:
+        description: JSON map { proj => patchset }
+        required: true
+
+env:
+  BOOST_TEST_COLOR_OUTPUT: yes
+  BOOST_TEST_LOG_LEVEL: test_suite
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        proj:
+          - NFD
+          - ChronoSync
+          - PSync
+          - NLSR
+          - name-based-access-control
+          - ndncert
+          - ndns
+          - ndn-tools
+          - ndn-traffic-generator
+          - repo-ng
+      fail-fast: false
+    continue-on-error: true
+    steps:
+      - name: choose to skip
+        run: false
+        if: ${{ contains(fromJson('["","skip"]'), fromJson(github.event.inputs.patchsets)[matrix.proj]) }}
+      - uses: actions/checkout@v2
+      - name: install dependencies
+        run: |
+          DEPS=$(sort -u ndn-cxx.deps ${{ matrix.proj }}.deps)
+          echo Installing ${DEPS}
+          sudo apt-get -qq update
+          sudo apt-get -qq install ${DEPS}
+      - name: prepare PATCHSET_* environment variables
+        run: |
+          echo "$PATCHSETS" | \
+            jq -r 'to_entries[] | "PATCHSET_" + (.key | gsub("-"; "") | ascii_upcase) + "=" + .value' | \
+            tee >(cat 1>&2) >> $GITHUB_ENV
+        env:
+          PATCHSETS: ${{ github.event.inputs.patchsets }}
+      - name: build and install ndn-cxx
+        run: ./build_ndn-cxx.sh
+      - name: build and test ${{ matrix.proj }}
+        run: ./build_${{ matrix.proj }}.sh
+  notify:
+    needs: build
+    runs-on: ubuntu-20.04
+    steps:
+      - id: buildresult
+        name: retrieve build result
+        run: |
+          curl -sfL ${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}/jobs > jobs.json
+          jq -r '.jobs[] | select((.name | startswith("build ")) and .steps[1].conclusion=="skipped" and
+                 .conclusion=="success") | .name' jobs.json > success.txt
+          jq -r '.jobs[] | select((.name | startswith("build ")) and .steps[1].conclusion=="skipped" and
+                 .conclusion!="success") | .name' jobs.json > failure.txt
+      - name: prepare email body
+        run: |
+          (
+            echo "$(wc -l < success.txt) successful jobs"
+            sed 's/^/  /' success.txt
+            echo
+            echo "$(wc -l < failure.txt) failed jobs"
+            sed 's/^/  /' failure.txt
+            echo
+            echo "https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+          ) > body.txt
+          cat body.txt
+      - uses: dawidd6/action-send-mail@v2
+        with:
+          server_address: taylor.mxrouting.net
+          server_port: 465
+          username: automation-of7n19so@ndn.today
+          password: ${{ secrets.MXROUTE_PASSWORD }}
+          from: ndn-cxx-breaks
+          to: ${{ github.event.inputs.email }}
+          subject: ndn-cxx-breaks result ${{ github.run_id }}
+          body: file://body.txt

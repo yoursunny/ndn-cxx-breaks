@@ -1,18 +1,14 @@
 #!/usr/bin/env bash
-set -e
-
+set -eo pipefail
 PROJ=$1
-PROJVAR=$2
-if [[ -z ${PROJVAR} ]]; then
-  PROJVAR=${PROJ//-}
-  PROJVAR=${PROJVAR^^}
-fi
-REPO=${3:-https://gerrit.named-data.net/$PROJ}
 
+PROJVAR=${PROJ//-}
+PROJVAR=${PROJVAR^^}
 PATCHSETVAR=PATCHSET_${PROJVAR}
 PATCHSET=${!PATCHSETVAR:-master}
+REPO=https://gerrit.named-data.net/$PROJ
 
-if [[ ${PATCHSET} == master ]]; then
+if [[ ${PATCHSET} == master ]] || [[ ${PATCHSET} == skip ]]; then
   # use default branch
   GERRIT_BRANCH=
 else

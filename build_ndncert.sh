@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -e
+set -eo pipefail
 
 mkdir -p ndncert
 cd ndncert
@@ -8,7 +8,7 @@ cd ndncert
 
 echo Building ndncert
 ./waf configure --with-tests --debug
-./waf -j4 || ./waf -j1
+./waf -j$(nproc) || ./waf -j1
 
 echo Running ndncert tests
 LD_LIBRARY_PATH=build build/unit-tests

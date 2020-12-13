@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -e
+set -eo pipefail
 
 mkdir -p ChronoSync
 cd ChronoSync
@@ -8,7 +8,7 @@ cd ChronoSync
 
 echo Building ChronoSync
 ./waf configure --debug $([[ -z $1 ]] && echo --with-tests)
-./waf -j4 || ./waf -j1
+./waf -j$(nproc) || ./waf -j1
 
 if [[ $1 == install ]]; then
   sudo ./waf install

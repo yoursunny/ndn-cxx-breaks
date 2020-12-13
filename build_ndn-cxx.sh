@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -e
+set -eo pipefail
 
 mkdir -p ndn-cxx
 cd ndn-cxx
@@ -8,7 +8,7 @@ cd ndn-cxx
 
 echo Building ndn-cxx
 ./waf configure --debug --without-pch
-./waf -j4 || ./waf -j1
+./waf -j$(nproc) || ./waf -j1
 sudo ./waf install
 sudo ldconfig
 

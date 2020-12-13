@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -e
+set -eo pipefail
 
 ./build_ChronoSync.sh install
 ./build_PSync.sh install
@@ -11,7 +11,7 @@ cd NLSR
 
 echo Building NLSR
 ./waf configure --with-tests --debug
-./waf -j4 || ./waf -j1
+./waf -j$(nproc) || ./waf -j1
 
 echo Running NLSR tests
 build/unit-tests-nlsr

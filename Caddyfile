@@ -1,0 +1,9 @@
+https://ndn-cxx-breaks.ndn.today {
+  bind 2604:9cc0:0:15ec::cf
+  tls internal
+  encode gzip
+
+  root * /home/web/ndn-cxx-breaks/dist
+  file_server
+  php_fastcgi *.php unix//run/php/php7.4-fpm.sock
+}

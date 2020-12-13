@@ -1,6 +1,8 @@
-/.cache/
-/dist/
-/node_modules/
-/vendor/
-sshkey
-sshkey.pub
+/.cache
+/.env
+/.vscode
+/dist
+/node_modules
+/package-lock.json
+/pnpm-lock.yaml
+/vendor

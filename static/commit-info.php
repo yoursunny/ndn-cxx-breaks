@@ -1,18 +1,21 @@
 <?php
+require_once 'env.php';
+
 $patchset = $_GET['patchset'];
 list($changeNo, $revisionNo) = array_map('intval', explode(',', $patchset));
 header('Content-Type: application/json');
 header('Cache-Control: max-age=600');
 
-define('GERRIT_ROOT', 'https://gerrit.named-data.net');
 function gerrit_json_get($url) {
   $context = stream_context_create(array(
     'http'=>array(
       'method'=>'GET',
-      'header'=>"Accept: application/json\r\nUser-Agent: ndn-cxx-breaks/20150619\r\n"
+      'header'=>[
+        'Accept: application/json',
+      ],
     )
   ));
-  $json = @file_get_contents(GERRIT_ROOT.$url, false, $context);
+  $json = @file_get_contents($_ENV['GERRIT_ROOT'].$url, false, $context);
   if ($json === FALSE) {
     return FALSE;
   }

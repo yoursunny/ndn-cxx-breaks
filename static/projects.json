@@ -1,78 +1,67 @@
 [
   {
     "name": "ndn-cxx",
-    "patchset_varname": "PATCHSET_NDNCXX",
     "skip_job": true
   },
   {
     "name": "NFD",
     "depends": [
       "ndn-cxx"
-    ],
-    "patchset_varname": "PATCHSET_NFD"
+    ]
   },
   {
     "name": "ChronoSync",
     "depends": [
       "ndn-cxx"
-    ],
-    "patchset_varname": "PATCHSET_CHRONOSYNC"
+    ]
   },
   {
     "name": "PSync",
     "depends": [
       "ndn-cxx"
-    ],
-    "patchset_varname": "PATCHSET_PSYNC"
+    ]
   },
   {
     "name": "NLSR",
     "depends": [
       "ChronoSync",
       "PSync"
-    ],
-    "patchset_varname": "PATCHSET_NLSR"
+    ]
   },
   {
     "name": "ndn-tools",
     "depends": [
       "ndn-cxx"
-    ],
-    "patchset_varname": "PATCHSET_NDNTOOLS"
+    ]
   },
   {
     "name": "ndncert",
     "depends": [
       "ndn-cxx"
-    ],
-    "patchset_varname": "PATCHSET_NDNCERT"
+    ]
   },
   {
     "name": "ndns",
     "depends": [
       "ndn-cxx"
-    ],
-    "patchset_varname": "PATCHSET_NDNS"
+    ]
   },
   {
     "name": "ndn-traffic-generator",
     "depends": [
       "ndn-cxx"
-    ],
-    "patchset_varname": "PATCHSET_NTG"
+    ]
   },
   {
     "name": "name-based-access-control",
     "depends": [
       "ndn-cxx"
-    ],
-    "patchset_varname": "PATCHSET_NAC"
+    ]
   },
   {
     "name": "repo-ng",
     "depends": [
       "ndn-cxx"
-    ],
-    "patchset_varname": "PATCHSET_REPONG"
+    ]
   }
 ]

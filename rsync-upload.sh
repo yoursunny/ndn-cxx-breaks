@@ -1,5 +1,7 @@
 #!/bin/bash
-DIR=$(dirname "${BASH_SOURCE[0]}")
-rsync -rlpv --delete --delete-excluded \
-  --exclude '.cache' --exclude '.git' --exclude 'node_modules' \
-  $DIR alwaysdata:ndn-cxx-breaks
+set -eo pipefail
+cd "$(dirname "${BASH_SOURCE[0]}")"
+
+rsync -rLpvog --delete --delete-excluded --chmod=D770,F660 --chown=sunny:www-data \
+  --exclude 'node_modules' --exclude '.git' --exclude '.cache' \
+  ./ vps4:/home/web/ndn-cxx-breaks

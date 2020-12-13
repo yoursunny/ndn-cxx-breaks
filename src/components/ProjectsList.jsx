@@ -1,14 +1,18 @@
-import React from 'react';
-import ProjectSetting from './ProjectSetting';
+import { Component, h } from "preact";
 
-export default function ProjectsList(props) {
-  const projectSettings = props.projects.map(proj =>
-    <ProjectSetting key={proj.name} project={proj} patchset={props.patchsets[proj.name]} updatePatchset={props.updatePatchset}/>
-  );
+import { ProjectSetting } from "./ProjectSetting.jsx";
 
-  return (
-    <div>
-      {projectSettings}
-    </div>
-  );
+export class ProjectsList extends Component {
+  render = () => {
+    const { projects, patchsets, updatePatchset } = this.props;
+    const projectSettings = projects.map((proj) =>
+      <ProjectSetting key={proj.name} project={proj} patchset={patchsets[proj.name]} updatePatchset={updatePatchset}/>,
+    );
+
+    return (
+      <div>
+        {projectSettings}
+      </div>
+    );
+  }
 }

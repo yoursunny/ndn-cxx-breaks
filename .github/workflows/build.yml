@@ -9,6 +9,9 @@ on:
         description: JSON map { proj => patchset }
         required: true
 
+permissions:
+  contents: read
+
 env:
   BOOST_TEST_COLOR_OUTPUT: yes
   BOOST_TEST_LOG_LEVEL: test_suite
@@ -50,9 +53,9 @@ jobs:
         env:
           PATCHSETS: ${{ github.event.inputs.patchsets }}
       - name: build and install ndn-cxx
-        run: ./build_ndn-cxx.sh
+        run: ./ndn-cxx.sh
       - name: build and test ${{ matrix.proj }}
-        run: ./build_${{ matrix.proj }}.sh
+        run: ./${{ matrix.proj }}.sh
   notify:
     needs: build
     runs-on: ubuntu-20.04
@@ -60,7 +63,7 @@ jobs:
       - id: buildresult
         name: retrieve build result
         run: |
-          curl -sfL ${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}/jobs > jobs.json
+          curl -fsLS ${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}/jobs > jobs.json
           jq -r '.jobs[] | select((.name | startswith("build ")) and .steps[1].conclusion=="skipped" and
                  .conclusion=="success") | .name' jobs.json > success.txt
           jq -r '.jobs[] | select((.name | startswith("build ")) and .steps[1].conclusion=="skipped" and
@@ -75,13 +78,12 @@ jobs:
             sed 's/^/  /' failure.txt
             echo
             echo "https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
-          ) > body.txt
-          cat body.txt
-      - uses: dawidd6/action-send-mail@v2
+          ) | tee body.txt
+      - uses: dawidd6/action-send-mail@v3
         with:
           server_address: taylor.mxrouting.net
           server_port: 465
-          username: automation-of7n19so@ndn.today
+          username: ndn-cxx-breaks@ndn.today
           password: ${{ secrets.MXROUTE_PASSWORD }}
           from: ndn-cxx-breaks
           to: ${{ github.event.inputs.email }}

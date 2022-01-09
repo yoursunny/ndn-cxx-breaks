@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 set -eo pipefail
 
-./build_ChronoSync.sh install
-./build_PSync.sh install
+./PSync.sh install
 
 mkdir -p NLSR
 cd NLSR

@@ -24,7 +24,6 @@
   {
     "name": "NLSR",
     "depends": [
-      "ChronoSync",
       "PSync"
     ]
   },

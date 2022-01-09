@@ -3,7 +3,7 @@ https://ndn-cxx-breaks.ndn.today {
   tls internal
   encode gzip
 
-  root * /home/web/ndn-cxx-breaks/dist
+  root * /home/web/ndn-cxx-breaks/public
   file_server
   php_fastcgi /*.php unix//run/php/php8.0-fpm.sock
 }

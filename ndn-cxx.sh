@@ -12,4 +12,4 @@ echo Building ndn-cxx
 sudo ./waf install
 sudo ldconfig
 
-ndnsec-keygen /operator | ndnsec-install-cert -
+ndnsec key-gen /operator >/dev/null

@@ -12,10 +12,6 @@ on:
 permissions:
   contents: read
 
-env:
-  BOOST_TEST_COLOR_OUTPUT: yes
-  BOOST_TEST_LOG_LEVEL: test_suite
-
 jobs:
   build:
     runs-on: ubuntu-20.04
@@ -56,6 +52,10 @@ jobs:
         run: ./ndn-cxx.sh
       - name: build and test ${{ matrix.proj }}
         run: ./${{ matrix.proj }}.sh
+        env:
+          BOOST_TEST_COLOR_OUTPUT: yes
+          BOOST_TEST_LOG_LEVEL: test_suite
+
   notify:
     needs: build
     runs-on: ubuntu-20.04
@@ -77,7 +77,7 @@ jobs:
             echo "$(wc -l < failure.txt) failed jobs"
             sed 's/^/  /' failure.txt
             echo
-            echo "https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+            echo "${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
           ) | tee body.txt
       - uses: dawidd6/action-send-mail@v3
         with:

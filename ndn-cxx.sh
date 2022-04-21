@@ -6,7 +6,6 @@ cd ndn-cxx
 
 ../checkout.sh ndn-cxx
 
-echo Building ndn-cxx
 ./waf configure --debug --without-pch
 ./waf -j$(nproc) || ./waf -j1
 sudo ./waf install

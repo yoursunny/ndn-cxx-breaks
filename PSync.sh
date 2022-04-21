@@ -4,7 +4,7 @@ set -eo pipefail
 mkdir -p PSync
 cd PSync
 
-../checkout.sh PSync
+../checkout_gerrit.sh PSync
 
 echo Building PSync
 ./waf configure --debug $([[ -z $1 ]] && echo --with-tests)

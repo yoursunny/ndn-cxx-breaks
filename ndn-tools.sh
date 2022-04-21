@@ -4,7 +4,7 @@ set -eo pipefail
 mkdir -p ndn-tools
 cd ndn-tools
 
-../checkout.sh ndn-tools
+../checkout_gerrit.sh ndn-tools
 
 echo Building ndn-tools
 ./waf configure --debug --with-tests

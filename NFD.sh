@@ -4,7 +4,7 @@ set -eo pipefail
 mkdir -p NFD
 cd NFD
 
-../checkout.sh NFD
+../checkout_gerrit.sh NFD
 
 echo Building NFD
 ./waf configure --debug --with-tests --without-pch

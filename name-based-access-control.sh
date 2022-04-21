@@ -4,7 +4,7 @@ set -eo pipefail
 mkdir -p name-based-access-control
 cd name-based-access-control
 
-../checkout.sh name-based-access-control
+../checkout_gerrit.sh name-based-access-control
 
 echo Building name-based-access-control
 ./waf configure --with-tests --debug

@@ -13,27 +13,26 @@ permissions:
   contents: read
 
 jobs:
+  prepare:
+    runs-on: ubuntu-20.04
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - name: Generate job matrix
+        id: set-matrix
+        run: |
+          matrix=$(jq -c 'with_entries(select(.key != "ndn-cxx" and .value != "skip")) | keys | {proj: .}' \
+                   <<< '${{ github.event.inputs.patchsets }}')
+          echo "::set-output name=matrix::${matrix}"
+
   build:
+    needs: prepare
     runs-on: ubuntu-20.04
     strategy:
-      matrix:
-        proj:
-          - NFD
-          - ChronoSync
-          - PSync
-          - NLSR
-          - name-based-access-control
-          - ndncert
-          - ndns
-          - ndn-tools
-          - ndn-traffic-generator
-          - repo-ng
+      matrix: ${{ fromJSON(needs.prepare.outputs.matrix) }}
       fail-fast: false
     continue-on-error: true
     steps:
-      - name: Choose to skip
-        run: false
-        if: ${{ contains(fromJson('["","skip"]'), fromJson(github.event.inputs.patchsets)[matrix.proj]) }}
       - name: Checkout
         uses: actions/checkout@v3
       - name: Install dependencies
@@ -44,11 +43,9 @@ jobs:
           sudo apt-get -qq install ${DEPS}
       - name: Prepare PATCHSET_* environment variables
         run: |
-          echo "$PATCHSETS" | \
+          echo '${{ github.event.inputs.patchsets }}' | \
             jq -r 'to_entries[] | "PATCHSET_" + (.key | gsub("-"; "") | ascii_upcase) + "=" + .value' | \
             tee >(cat 1>&2) >> $GITHUB_ENV
-        env:
-          PATCHSETS: ${{ github.event.inputs.patchsets }}
       - name: Build and install ndn-cxx
         run: ./ndn-cxx.sh
       - name: Build and test ${{ matrix.proj }}
@@ -64,10 +61,10 @@ jobs:
       - name: Retrieve build results
         run: |
           curl -fsLS "${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}/jobs" > jobs.json
-          jq -r '.jobs[] | select((.name | startswith("build ")) and .steps[1].conclusion=="skipped" and
-                 .conclusion=="success") | .name' jobs.json > success.txt
-          jq -r '.jobs[] | select((.name | startswith("build ")) and .steps[1].conclusion=="skipped" and
-                 .conclusion!="success") | .name' jobs.json > failure.txt
+          jq -r '.jobs[] | select((.name | startswith("build ")) and .conclusion == "success") | .name' \
+            jobs.json > success.txt
+          jq -r '.jobs[] | select((.name | startswith("build ")) and .conclusion != "success") | .name' \
+            jobs.json > failure.txt
       - name: Prepare email body
         run: |
           (

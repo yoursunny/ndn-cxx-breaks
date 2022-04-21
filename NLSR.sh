@@ -6,7 +6,7 @@ set -eo pipefail
 mkdir -p NLSR
 cd NLSR
 
-../checkout.sh NLSR
+../checkout_gerrit.sh NLSR
 
 echo Building NLSR
 ./waf configure --with-tests --debug

@@ -4,7 +4,7 @@ set -eo pipefail
 mkdir -p ndn-cxx
 cd ndn-cxx
 
-../checkout.sh ndn-cxx
+../checkout_gerrit.sh ndn-cxx
 
 ./waf configure --debug --without-pch
 ./waf -j$(nproc) || ./waf -j1

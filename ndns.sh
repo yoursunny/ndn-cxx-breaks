@@ -4,7 +4,7 @@ set -eo pipefail
 mkdir -p ndns
 cd ndns
 
-../checkout.sh ndns
+../checkout_gerrit.sh ndns
 
 echo Building ndns
 ./waf configure --with-tests --debug

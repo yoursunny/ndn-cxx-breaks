@@ -4,7 +4,7 @@ set -eo pipefail
 mkdir -p repo-ng
 cd repo-ng
 
-../checkout.sh repo-ng
+../checkout_gerrit.sh repo-ng
 
 echo Building repo-ng
 ./waf configure --debug --with-examples --with-tests

@@ -4,7 +4,7 @@ set -eo pipefail
 mkdir -p ndncert
 cd ndncert
 
-../checkout.sh ndncert
+../checkout_gerrit.sh ndncert
 
 echo Building ndncert
 ./waf configure --with-tests --debug

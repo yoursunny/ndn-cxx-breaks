@@ -4,7 +4,7 @@ set -eo pipefail
 mkdir -p ChronoSync
 cd ChronoSync
 
-../checkout.sh ChronoSync
+../checkout_gerrit.sh ChronoSync
 
 echo Building ChronoSync
 ./waf configure --debug $([[ -z $1 ]] && echo --with-tests)

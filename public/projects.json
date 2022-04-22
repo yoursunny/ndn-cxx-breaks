@@ -3,31 +3,31 @@
     "name": "ndn-cxx"
   },
   {
-    "name": "NFD"
-  },
-  {
     "name": "ChronoSync"
   },
   {
-    "name": "PSync"
+    "name": "NFD"
   },
   {
     "name": "NLSR"
   },
   {
+    "name": "PSync"
+  },
+  {
+    "name": "name-based-access-control"
+  },
+  {
     "name": "ndn-tools"
+  },
+  {
+    "name": "ndn-traffic-generator"
   },
   {
     "name": "ndncert"
   },
   {
     "name": "ndns"
-  },
-  {
-    "name": "ndn-traffic-generator"
-  },
-  {
-    "name": "name-based-access-control"
   },
   {
     "name": "repo-ng"

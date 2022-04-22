@@ -1,66 +1,35 @@
 [
   {
-    "name": "ndn-cxx",
-    "skip_job": true
+    "name": "ndn-cxx"
   },
   {
-    "name": "NFD",
-    "depends": [
-      "ndn-cxx"
-    ]
+    "name": "NFD"
   },
   {
-    "name": "ChronoSync",
-    "depends": [
-      "ndn-cxx"
-    ]
+    "name": "ChronoSync"
   },
   {
-    "name": "PSync",
-    "depends": [
-      "ndn-cxx"
-    ]
+    "name": "PSync"
   },
   {
-    "name": "NLSR",
-    "depends": [
-      "PSync"
-    ]
+    "name": "NLSR"
   },
   {
-    "name": "ndn-tools",
-    "depends": [
-      "ndn-cxx"
-    ]
+    "name": "ndn-tools"
   },
   {
-    "name": "ndncert",
-    "depends": [
-      "ndn-cxx"
-    ]
+    "name": "ndncert"
   },
   {
-    "name": "ndns",
-    "depends": [
-      "ndn-cxx"
-    ]
+    "name": "ndns"
   },
   {
-    "name": "ndn-traffic-generator",
-    "depends": [
-      "ndn-cxx"
-    ]
+    "name": "ndn-traffic-generator"
   },
   {
-    "name": "name-based-access-control",
-    "depends": [
-      "ndn-cxx"
-    ]
+    "name": "name-based-access-control"
   },
   {
-    "name": "repo-ng",
-    "depends": [
-      "ndn-cxx"
-    ]
+    "name": "repo-ng"
   }
 ]

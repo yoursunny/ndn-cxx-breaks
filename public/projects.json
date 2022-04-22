@@ -18,6 +18,9 @@
     "name": "name-based-access-control"
   },
   {
+    "name": "ndn-svs"
+  },
+  {
     "name": "ndn-tools"
   },
   {

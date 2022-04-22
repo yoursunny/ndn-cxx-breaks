@@ -7,7 +7,7 @@ cd repo-ng
 ../checkout.sh repo-ng
 
 echo Building repo-ng
-./waf configure --with-tests --with-examples --debug
+./waf configure --debug --with-examples --with-tests
 ./waf -j$(nproc) || ./waf -j1
 
 echo Running repo-ng tests

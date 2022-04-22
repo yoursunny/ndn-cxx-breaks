@@ -7,7 +7,7 @@ cd PSync
 ../checkout.sh PSync
 
 echo Building PSync
-./waf configure --debug $([[ -z $1 ]] && echo --with-tests)
+./waf configure --debug $([[ -z $1 ]] && echo --with-examples --with-tests)
 ./waf -j$(nproc) || ./waf -j1
 
 if [[ $1 == install ]]; then

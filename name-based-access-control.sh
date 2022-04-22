@@ -7,7 +7,7 @@ cd name-based-access-control
 ../checkout.sh name-based-access-control
 
 echo Building name-based-access-control
-./waf configure --with-tests --debug
+./waf configure --debug --with-examples --with-tests
 ./waf -j$(nproc) || ./waf -j1
 
 echo Running name-based-access-control tests

@@ -1,5 +1,5 @@
 #!/bin/bash
-set -eo pipefail
+set -euo pipefail
 cd "$(dirname "${BASH_SOURCE[0]}")"
 
 rsync -rLpvog --delete --delete-excluded --chmod=D770,F660 --chown=sunny:www-data \

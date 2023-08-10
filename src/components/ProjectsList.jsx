@@ -14,5 +14,5 @@ export class ProjectsList extends Component {
         {projectSettings}
       </div>
     );
-  }
+  };
 }

@@ -21,7 +21,7 @@ module.exports = (env, argv) => ({
                 {
                   pragma: "h",
                   pragmaFrag: "Fragment",
-                }
+                },
               ],
             ],
           },
@@ -30,7 +30,7 @@ module.exports = (env, argv) => ({
     ],
   },
   resolve: {
-    extensions: [".js", ".jsx"]
+    extensions: [".js", ".jsx"],
   },
   output: {
     filename: "bundle.js",

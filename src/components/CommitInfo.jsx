@@ -11,13 +11,13 @@ export class CommitInfo extends Component {
 
   componentDidMount = () => {
     this.fetchInfo();
-  }
+  };
 
   componentDidUpdate = (prevProps) => {
     if (this.props.patchset !== prevProps.patchset) {
       this.fetchInfo();
     }
-  }
+  };
 
   fetchInfo = async () => {
     const { patchset } = this.props;
@@ -26,16 +26,13 @@ export class CommitInfo extends Component {
       return;
     }
 
-    const resp = await fetch(`commit-info.php?patchset=${patchset}`);
-    const j = await resp.json();
+    const j = (await fetch(`commit-info.php?patchset=${patchset}`)).json();
     this.setState({ info: j });
-  }
+  };
 
-  render = () => {
-    return (
-      <CommitInfoDisplay info={this.state.info}/>
-    );
-  }
+  render = () => (
+    <CommitInfoDisplay info={this.state.info}/>
+  );
 }
 
 function CommitInfoDisplay(props) {

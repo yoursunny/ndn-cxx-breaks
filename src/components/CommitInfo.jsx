@@ -26,7 +26,7 @@ export class CommitInfo extends Component {
       return;
     }
 
-    const j = (await fetch(`commit-info.php?patchset=${patchset}`)).json();
+    const j = await (await fetch(`commit-info.php?patchset=${patchset}`)).json();
     this.setState({ info: j });
   };
 

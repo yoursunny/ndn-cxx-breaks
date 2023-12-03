@@ -7,15 +7,15 @@
     "start": "concurrently --kill-others npm:watch npm:serve",
     "watch": "webpack watch"
   },
-  "packageManager": "pnpm@8.6.12",
+  "packageManager": "pnpm@8.11.0",
   "devDependencies": {
-    "@babel/core": "^7.22.10",
-    "@babel/plugin-transform-react-jsx": "^7.22.5",
-    "@yoursunny/xo-config": "^0.55.0",
+    "@babel/core": "^7.23.5",
+    "@babel/plugin-transform-react-jsx": "^7.23.4",
+    "@yoursunny/xo-config": "^0.56.0",
     "babel-loader": "^9.1.3",
-    "concurrently": "^8.2.0",
-    "preact": "^10.16.0",
-    "webpack": "^5.88.2",
+    "concurrently": "^8.2.2",
+    "preact": "^10.19.2",
+    "webpack": "^5.89.0",
     "webpack-cli": "^5.1.4"
   }
 }

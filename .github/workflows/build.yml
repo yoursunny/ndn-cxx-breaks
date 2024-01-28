@@ -9,8 +9,7 @@ on:
         description: JSON map { project => patchset }
         required: true
 
-permissions:
-  contents: read
+permissions: {}
 
 jobs:
   prepare:
@@ -34,7 +33,7 @@ jobs:
     continue-on-error: true
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Install dependencies
         run: |
           DEPS=$(sort -u ndn-cxx.deps ${{ matrix.proj }}.deps)

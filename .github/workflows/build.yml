@@ -64,17 +64,19 @@ jobs:
             jobs.json > success.txt
           jq -r '.jobs[] | select((.name | startswith("build ")) and .conclusion != "success") | .name' \
             jobs.json > failure.txt
-      - name: Prepare email body
+      - name: Prepare summary
         run: |
           (
-            echo "$(wc -l < success.txt) successful jobs"
-            sed 's/^/  /' success.txt
+            echo "### :white_check_mark: $(wc -l < success.txt) successful jobs"
             echo
-            echo "$(wc -l < failure.txt) failed jobs"
-            sed 's/^/  /' failure.txt
+            sed 's/^build (\(.\+\))/- \1/' success.txt
             echo
-            echo "${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
-          ) | tee body.txt
+            echo "### :x: $(wc -l < failure.txt) failed jobs"
+            echo
+            sed 's/^build (\(.\+\))/- \1/' failure.txt
+            echo
+            echo "<${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}>"
+          ) | tee body.md >> $GITHUB_STEP_SUMMARY
       - name: Send email
         uses: dawidd6/action-send-mail@v3
         with:
@@ -85,4 +87,5 @@ jobs:
           from: ndn-cxx-breaks
           to: ${{ github.event.inputs.email }}
           subject: ndn-cxx-breaks result ${{ github.run_id }}
-          body: file://body.txt
+          html_body: file://body.md
+          convert_markdown: true

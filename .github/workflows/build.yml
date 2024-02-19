@@ -1,4 +1,4 @@
-name: build
+name: Build
 on:
   workflow_dispatch:
     inputs:
@@ -13,12 +13,12 @@ permissions: {}
 
 jobs:
   prepare:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     outputs:
-      matrix: ${{ steps.set-matrix.outputs.matrix }}
+      matrix: ${{ steps.gen-matrix.outputs.matrix }}
     steps:
       - name: Generate job matrix
-        id: set-matrix
+        id: gen-matrix
         run: |
           matrix=$(jq -c 'with_entries(select(.key != "ndn-cxx" and .value != "skip")) | keys | {proj: .}' \
                    <<< '${{ github.event.inputs.patchsets }}')
@@ -26,7 +26,7 @@ jobs:
 
   build:
     needs: prepare
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     strategy:
       matrix: ${{ fromJSON(needs.prepare.outputs.matrix) }}
       fail-fast: false
@@ -55,7 +55,7 @@ jobs:
 
   notify:
     needs: build
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - name: Retrieve build results
         run: |

@@ -7,7 +7,7 @@ cd ndncert
 ../checkout_gerrit.sh ndncert
 
 echo Building ndncert
-./waf configure --with-tests --debug
+./waf configure --debug --with-tests
 ./waf -j$(nproc) || ./waf -j1
 
 echo Running ndncert tests

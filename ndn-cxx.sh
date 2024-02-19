@@ -6,7 +6,7 @@ cd ndn-cxx
 
 ../checkout_gerrit.sh ndn-cxx
 
-./waf configure --debug --without-pch
+./waf configure --debug
 ./waf -j$(nproc) || ./waf -j1
 sudo ./waf install
 sudo ldconfig

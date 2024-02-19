@@ -2,6 +2,7 @@
 set -eo pipefail
 
 ./PSync.sh install
+./ndn-svs.sh install
 
 mkdir -p NLSR
 cd NLSR
@@ -9,7 +10,7 @@ cd NLSR
 ../checkout_gerrit.sh NLSR
 
 echo Building NLSR
-./waf configure --with-tests --debug
+./waf configure --debug --with-psync --with-svs --with-tests
 ./waf -j$(nproc) || ./waf -j1
 
 echo Running NLSR tests

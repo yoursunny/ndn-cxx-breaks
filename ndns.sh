@@ -7,7 +7,7 @@ cd ndns
 ../checkout_gerrit.sh ndns
 
 echo Building ndns
-./waf configure --with-tests --debug
+./waf configure --debug --with-tests
 ./waf -j$(nproc) || ./waf -j1
 
 echo Running ndns tests

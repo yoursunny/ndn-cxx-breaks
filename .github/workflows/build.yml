@@ -80,7 +80,7 @@ jobs:
       - name: Send email
         uses: dawidd6/action-send-mail@v3
         with:
-          server_address: taylor.mxrouting.net
+          server_address: wednesday.mxrouting.net
           server_port: 465
           username: ndn-cxx-breaks@ndn.today
           password: ${{ secrets.MXROUTE_PASSWORD }}
